@@ -1,0 +1,66 @@
+/* hover color  #337AB7; */
+@media screen and (min-width: 900px){
+	.top_nav {
+		margin-top: 20px;
+	}
+
+	.jumbotron {
+		padding-top: 150px;
+	}
+}
+
+.jumbotron {
+	background-color: #fff;
+}
+
+.jumbotron h1 {
+	padding-bottom: 25px;
+}
+
+.jumbotron p {
+	padding-bottom: 20px;
+	width: 60%;
+}
+
+.navbar {
+	margin-bottom: 0px;
+}
+.top_nav .navbar-right {
+	margin-right: 0px;
+}
+.top_nav .dropdown-menu li a {
+	padding: 3px 15px;
+}
+li a:hover {
+	color: #fff !important;
+	background-color: #337AB7 !important;
+}
+
+nav li a .active {
+	background-color: #00AECD;
+}
+
+.top_nav li a {
+	padding: 1px 10px;
+}
+
+#content {
+	margin-top: 30px;
+}
+
+/* always present */
+.expand-transition {
+  transition: all .3s ease;
+  height: 30px;
+  padding: 10px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+/* .expand-enter defines the starting state for entering */
+/* .expand-leave defines the ending state for leaving */
+.expand-enter, .expand-leave {
+  height: 0;
+  padding: 0 10px;
+  opacity: 0;
+}
