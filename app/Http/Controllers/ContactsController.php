@@ -45,14 +45,6 @@ class ContactsController extends Controller
 
     public function store(Request $data)
     {
-        $validator = Validator::make($data->all(), [
-            'email' => 'required|unique:contacts',
-            'phone' => 'required|unique:contacts',
-        ]);
-
-        if ($validator->fails()) {
-            return $validator->errors()->all();
-        } 
         
         return Contacts::create($data->all());
     }

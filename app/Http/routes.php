@@ -35,7 +35,7 @@ Route::group(['prefix' => 'api'], function()
 Route::auth();
 
 Route::group(['as' => 'user::'], function () {
-	Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@index']);
+	Route::get('/send', ['as' => 'send', 'uses' => 'HomeController@index']);
 	Route::get('/profile', ['as' => 'profile', 'uses' => 'UserController@profile']);
 	Route::get('/settings', ['as' => 'settings', 'uses' => 'UserController@settings']);
 	Route::get('/help', ['as' => 'help', 'uses' => 'UserController@help']);

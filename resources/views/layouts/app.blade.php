@@ -64,7 +64,7 @@
           <ul class="nav navbar-nav">
             @if (!Auth::guest())
                 <li role="presentation"><a href="{{ url('/') }}">Home</a></li>
-                <li><a href="{{ route('user::dashboard') }}">Send</a></li> 
+                <li><a href="{{ route('user::send') }}">Send</a></li> 
                 <li role="presentation"  class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                         Team <span class="caret"></span>
