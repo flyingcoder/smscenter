@@ -77,8 +77,18 @@ class UserController extends Controller {
         return User::findOrFail($id);
     }
 
-     public function destroy($id)
+    public function destroy($id)
     {
         return User::destroy($id);
+    }
+
+    public function help()
+    {
+        return view('dashboard.help');
+    }
+
+    public function settings()
+    {
+        return view('dashboard.settings');
     }
 }

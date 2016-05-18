@@ -38,6 +38,7 @@ Route::group(['as' => 'user::'], function () {
 	Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'HomeController@index']);
 	Route::get('/profile', ['as' => 'profile', 'uses' => 'UserController@profile']);
 	Route::get('/settings', ['as' => 'settings', 'uses' => 'UserController@settings']);
+	Route::get('/help', ['as' => 'help', 'uses' => 'UserController@help']);
 	Route::get('/phonebook', ['as' => 'phonebook', 'uses' => 'ContactsController@display']);
 	Route::get('/team', ['as' => 'team', 'uses' => 'TeamController@display']);
 	Route::get('/newteam', ['as' => 'addTeam', 'uses' => 'TeamController@create']);

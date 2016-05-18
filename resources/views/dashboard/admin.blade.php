@@ -71,7 +71,7 @@
 					    <input v-model="newUser.phone" type="text" class="form-control" id="phone">
 					  </fieldset>
 				  	  <button :disabled="!isValid" type="submit" class="btn btn-primary pull-right" v-if="!edit">Submit</button>
-				  	  <button :disabled="!isValid" class="btn btn-primary pull-right" type="submit" v-if="edit" @click.prevent="editContact(newContact.id)">Edit User</button>
+				  	  <button :disabled="!isValid" class="btn btn-primary pull-right" type="submit" v-if="edit" @click.prevent="editUser(newUser.id)">Edit User</button>
 				</form>
 			  </div>
 			</div>
@@ -177,17 +177,17 @@
 			},
 
 			editUser: function (id) {
-				this.newContact.phone = $('#phone').intlTelInput("getNumber");
+				this.newUser.phone = $('#phone').intlTelInput("getNumber");
 
-				var contact = this.newContact
+				var user = this.newUser
 
-				this.newContact = {firstname: '', lastname: '', phone: '', email: '', address: ''}
+				this.newUser = {name: '', phone: '', email: ''}
 
-				this.$http.patch('/api/contacts/' + id, contact, function (data) {
-					swal("Ahoy!","You have successfully edited your contact " + contact.firstname,"success");
+				this.$http.patch('/api/user/' + id, user, function (data) {
+					swal("Ahoy!","You have successfully edited the user","success");
 				})
 
-				vm.fetchContact()
+				vm.fetchUser()
 
 				this.edit = false
 
