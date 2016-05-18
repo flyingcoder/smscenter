@@ -5,6 +5,7 @@ use Config;
 use Firebase\JWT\JWT;
 use App\User;
 use DB;
+use Response;
 
 class UserController extends Controller {
 
@@ -58,5 +59,26 @@ class UserController extends Controller {
     public function profile()
     {
         return view('dashboard.profile');
+    }
+
+    public function update(Request $request, $id)
+    {
+        User::findOrFail($id)->update($request->all());
+        return Response::json($request->all());
+    }
+
+    public function index()
+    {
+        return User::all();
+    }
+
+    public function show($id)
+    {
+        return User::findOrFail($id);
+    }
+
+     public function destroy($id)
+    {
+        return User::destroy($id);
     }
 }

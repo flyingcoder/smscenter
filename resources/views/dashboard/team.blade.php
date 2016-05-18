@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row" id="team">
-    	<div class="col-md-6">
+    	<div class="col-md-6 @if(!Auth::user()->isAdmin()) col-md-offset-3 @endif">
     		<div class="panel panel-default">
 			  <div class="panel-heading">
 				<h3 class="panel-title"> List of team members </h3>
@@ -29,11 +29,11 @@
 			     			<td>@{{ member.phone }}</td>
 			     			<td>@{{ member.role }}</td>
 			     			<td>
-			     				<!-- <a href="#" @click.prevent="sendMessage(con.phone,con.firstname)"><i class="glyphicon glyphicon-envelope" style="color:green"></i></a>
+			     				<a href="#" @click.prevent="sendMessage(member.phone,member.name)"><i class="glyphicon glyphicon-envelope" style="color:green"></i></a>
 			     				&nbsp;
-			     				<a href="#" @click.prevent="showContact(con.id)"><i class="glyphicon glyphicon-edit"></i></a>
-			     				&nbsp;
-			     				<a href="#" @click.prevent="removeContact(con.id)"><i class="glyphicon glyphicon-trash" style="color:red"></i></a> -->
+			     				@if(Auth::user()->isAdmin())
+			     				<a href="#" @click.prevent="removeMember(member.id,this.newMember.teamid)"><i class="glyphicon glyphicon-trash" style="color:red"></i></a>
+			     				@endif
 			     			</td>
 			     		</tr>
 			     	</tbody>
@@ -41,6 +41,7 @@
 			  </div>
 			</div>
     	</div>
+    	@if(Auth::user()->isAdmin())
     	<div class="col-md-6">
     		<div class="panel panel-default">
 			  <div class="panel-heading">
@@ -64,6 +65,7 @@
 			  </div>
 			</div>
     	</div>
+    	@endif
     </div>
 	
 @endsection
@@ -84,6 +86,7 @@
 
 		data: {
 			newMember: {
+				id: '',
 				email: '',
 				teamid: ''
 			},
@@ -94,6 +97,41 @@
 		},
 
 		methods: {
+
+			sendMessage: function (num, name) {
+				if(num){
+					swal({
+					  title: "Send msg to " + name,
+					  input: 'text',
+					  confirmButtonText: "Send",
+					  showCancelButton: true,
+					  inputValidator: function(value) {
+					    return new Promise(function(resolve, reject) {
+					      if (value) {
+					        swal.enableLoading();
+						    setTimeout(function() {
+						      resolve();
+						    }, 2000);
+					      } else {
+					        reject('You need to write something!');
+					      }
+					    });
+					  }
+					}).then(function(msg) {
+					  if (msg) {
+					  	var data = { phone: num, body: msg }
+					  	vm.$http.post('/api/sms', data).then(function (response) {
+				  			swal("Beep! beep! beep!", "Your message will be delivered shortly", "success"); 
+					  	}, function (response) {
+					  		swal("Oops! "+response.status+" Error code occurs", response.statusText, "error");
+					  	})
+					  }
+					})
+				} else {
+					swal("Oops!", "You need a number to send a message", "error");
+				}
+				
+			},
 
 			fetchMember: function (id) {
 				this.$http.get('/api/team/' + id + '/members', function (data) {
@@ -132,60 +170,28 @@
 				})
 			},
 		
-			removeContact: function (id) {
+			removeMember: function (id, teamid) {
 				swal({
 				  title: 'Are you sure?',
-				  text: "You won't be able to revert this!",
+				  text: "You want to remove this member?",
 				  type: 'warning',
 				  showCancelButton: true,
 				  confirmButtonColor: '#3085d6',
 				  cancelButtonColor: '#d33',
-				  confirmButtonText: 'Yes, delete it!'
+				  confirmButtonText: 'Yes, remove it!'
 				}).then(function(isConfirm) {
 				  if (isConfirm) {
-				  	vm.$http.delete('/api/contacts/' + id)
+				  	vm.$http.get('/api/team/' + id + '/' + teamid)
 				    swal(
-				      'Deleted!',
-				      'Your file has been deleted.',
+				      'Removed!',
+				      'Member is removed.',
 				      'success'
 				    );
-				    vm.fetchContact()
+				    vm.fetchMember(teamid)
 				  }
 				})
 
 				
-			},
-
-			editContact: function (id) {
-				this.newContact.phone = $('#phone').intlTelInput("getNumber");
-
-				var contact = this.newContact
-
-				this.newContact = {firstname: '', lastname: '', phone: '', email: '', address: ''}
-
-				this.$http.patch('/api/contacts/' + id, contact, function (data) {
-					swal("Ahoy!","You have successfully edited your contact " + contact.firstname,"success");
-				})
-
-				vm.fetchContact()
-
-				this.edit = false
-
-			},
-
-			showContact: function (id) {
-				this.edit = true
-
-				this.$http.get('/api/contacts/' + id, function (data) {
-					$("#phone").intlTelInput("setNumber", data.phone);
-					this.newContact.id = data.id,
-					this.newContact.user_id = data.user_id,
-					this.newContact.firstname = data.firstname,
-					this.newContact.lastname = data.lastname,
-					this.newContact.email = data.email,
-					this.newContact.address = data.address,
-					this.newContact.phone = $("#phone").intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
-				})
 			},
 
 			InviteMember: function () {

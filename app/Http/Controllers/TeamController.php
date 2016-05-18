@@ -53,9 +53,11 @@ class TeamController extends Controller
         
     }
 
-    public function destroy($id)
+    public function remove($id,$teamid)
     {
-        return Contacts::destroy($id);
+        $user = User::find($id);
+        $user->team()->detach();
+        return $id;
     }
 
     public function store(Request $data)

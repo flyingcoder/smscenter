@@ -55,7 +55,7 @@ class Team extends Model
     	$users = [];
 
        foreach($userid as $key => $id){
-       		$member = DB::table('users')->select('email','name', 'phone')->where('id', $id->user_id)->get()[0];
+       		$member = DB::table('users')->select('id','email','name', 'phone')->where('id', $id->user_id)->get()[0];
        		$member->role = $id->role;
        		$users[] = $member;
        	}

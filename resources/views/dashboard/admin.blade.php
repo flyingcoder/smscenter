@@ -21,17 +21,17 @@
 			     		</tr>
 			     	</thead>
 			     	<tbody>
-			     		<tr transition="expand" v-for="con in contacts">
+			     		<tr transition="expand" v-for="user in users">
 			     			<td style="width:10px">@{{ $index + 1 }}</a></td>
-			     			<td>@{{ con.firstname + " " + con.lastname}}</td>
-			     			<td>@{{ con.email }}</td>
-			     			<td>@{{ con.phone }}</td>
+			     			<td>@{{ user.name}}</td>
+			     			<td>@{{ user.email }}</td>
+			     			<td>@{{ user.phone }}</td>
 			     			<td>
-			     				<a href="#" @click.prevent="sendMessage(con.phone,con.firstname)"><i class="glyphicon glyphicon-envelope" style="color:green"></i></a>
+			     				<a href="#" @click.prevent="sendMessage(user.phone,user.name)"><i class="glyphicon glyphicon-envelope" style="color:green"></i></a>
 			     				&nbsp;
-			     				<a href="#" @click.prevent="showContact(con.id)"><i class="glyphicon glyphicon-edit"></i></a>
+			     				<a href="#" @click.prevent="showUser(user.id)"><i class="glyphicon glyphicon-edit"></i></a>
 			     				&nbsp;
-			     				<a href="#" @click.prevent="removeContact(con.id)"><i class="glyphicon glyphicon-trash" style="color:red"></i></a>
+			     				<a href="#" @click.prevent="removeUser(user.id)"><i class="glyphicon glyphicon-trash" style="color:red"></i></a>
 			     			</td>
 			     		</tr>
 			     	</tbody>
@@ -45,47 +45,33 @@
 				<h3 class="panel-title">
 					<span v-if="!edit"> Create </span> 
 					<span v-if="edit"> Edit </span> 
-					Contacts
+					User
 				</h3>
 			  </div>
 			  <div class="panel-body">
-			   	<form role="form" method="POST" v-on:submit.prevent="AddNewContact">
+			   	<form role="form" method="POST" v-on:submit.prevent="AddNewUser">
 
-			   	  <div class="alert alert-danger" v-if="!isValid">
-					<ul>
-						<li v-show="!validation.firstname">First Name field is required.</li>
-						<li v-show="!validation.lastname">Last Name field is required.</li>
-						<li v-show="!validation.email">Input a valid email address.</li>
-						<li v-show="!validation.phone">Phone Number field is required.</li>
-						<li v-show="!validation.address">Address field is required.</li>
-					</ul>
-				  </div>
-			   	  <div class="row">
-			   	  	<fieldset class="form-group col-md-6">
-					  <label for="firstname">First Name</label>
-					  <input v-model="newContact.firstname" type="text" class="form-control" id="firstname" name="firstname">
-					</fieldset>
-					 <fieldset class="form-group col-md-6">
-					    <label for="lastname">Last Name</label>
-					    <input v-model="newContact.lastname" type="text" class="form-control" id="lastname" name="lastname">
+			   	      <div class="alert alert-danger" v-if="!isValid">
+						<ul>
+							<li v-show="!validation.name">Name Number field is required.</li>
+							<li v-show="!validation.phone">Phone Number field is required.</li>
+							<li v-show="!validation.email">Input a valid email address.</li>
+						</ul>
+					  </div>
+				     <fieldset class="form-group">
+					    <label for="name">Name</label>
+					    <input v-model="newUser.name" type="text" class="form-control" id="name">
 					  </fieldset>
-			   	  </div>
-			   	  <div class="row">
-			   	  	<fieldset class="form-group col-md-6">
-					  <label for="email">Email</label>
-					  <input v-model="newContact.email" type="email" class="form-control" id="email" name="email">
-					</fieldset>
-					<fieldset class="form-group col-md-6">
-					  <label for="phone">Phone</label>
-					  <input v-model="newContact.phone" type="tel" class="form-control" id="phone" name="phone">
-					</fieldset>
-			   	  </div>
-				  <fieldset class="form-group">
-					  <label for="address">Address</label>
-					  <input v-model="newContact.address" type="text" class="form-control" id="address" name="address">
-					</fieldset>
-				  <button :disabled="!isValid" type="submit" class="btn btn-primary pull-right" v-if="!edit">Submit</button>
-				  <button :disabled="!isValid" class="btn btn-primary pull-right" type="submit" v-if="edit" @click.prevent="editContact(newContact.id)">Edit User</button>
+					  <fieldset class="form-group">
+					    <label for="email">Email</label>
+					    <input v-model="newUser.email" type="email" class="form-control" id="email">
+					  </fieldset>
+					  <fieldset class="form-group">
+					    <label for="phone">Phone</label>
+					    <input v-model="newUser.phone" type="text" class="form-control" id="phone">
+					  </fieldset>
+				  	  <button :disabled="!isValid" type="submit" class="btn btn-primary pull-right" v-if="!edit">Submit</button>
+				  	  <button :disabled="!isValid" class="btn btn-primary pull-right" type="submit" v-if="edit" @click.prevent="editContact(newContact.id)">Edit User</button>
 				</form>
 			  </div>
 			</div>
@@ -106,20 +92,15 @@
 	      }
 	    },
 
-		el: '#contacts',
+		el: '#admin',
 
 		data: {
-			newContact: {
+			newUser: {
 				id: '',
-				user_id: {{ Auth::user()->id }},
-				firstname: '',
-				lastname: '',
+				name: '',
 				email: '',
-				phone: '',
-				address: ''
+				phone: ''
 			},
-
-			contacts: '',
 
 			message: false,
 
@@ -131,42 +112,47 @@
 		methods: {
 
 			sendMessage: function (num, name) {
-				swal({
-				  title: "Send msg to " + name,
-				  input: 'text',
-				  confirmButtonText: "Send",
-				  showCancelButton: true,
-				  inputValidator: function(value) {
-				    return new Promise(function(resolve, reject) {
-				      if (value) {
-				        swal.enableLoading();
-					    setTimeout(function() {
-					      resolve();
-					    }, 2000);
-				      } else {
-				        reject('You need to write something!');
-				      }
-				    });
-				  }
-				}).then(function(msg) {
-				  if (msg) {
-				  	var data = { phone: num, body: msg }
-				  	vm.$http.post('/api/sms', data).then(function (response) {
-			  			swal("Beep! beep! beep!", "Your message will be delivered shortly", "success"); 
-				  	}, function (response) {
-				  		swal("Oops! "+response.status+" Error code occurs", response.statusText, "error");
-				  	})
-				  }
+				if(num){
+					swal({
+					  title: "Send msg to " + name,
+					  input: 'text',
+					  confirmButtonText: "Send",
+					  showCancelButton: true,
+					  inputValidator: function(value) {
+					    return new Promise(function(resolve, reject) {
+					      if (value) {
+					        swal.enableLoading();
+						    setTimeout(function() {
+						      resolve();
+						    }, 2000);
+					      } else {
+					        reject('You need to write something!');
+					      }
+					    });
+					  }
+					}).then(function(msg) {
+					  if (msg) {
+					  	var data = { phone: num, body: msg }
+					  	vm.$http.post('/api/sms', data).then(function (response) {
+				  			swal("Beep! beep! beep!", "Your message will be delivered shortly", "success"); 
+					  	}, function (response) {
+					  		swal("Oops! "+response.status+" Error code occurs", response.statusText, "error");
+					  	})
+					  }
+					})
+				} else {
+					swal("Oops!", "You need a number to send a message", "error");
+				}
+				
+			},
+		
+			fetchUser: function () {
+				this.$http.get('/api/user', function (data) {
+					this.$set('users', data)
 				})
 			},
 		
-			fetchContact: function () {
-				this.$http.get('/api/contacts', function (data) {
-					this.$set('contacts', data)
-				})
-			},
-		
-			removeContact: function (id) {
+			removeUser: function (id) {
 				swal({
 				  title: 'Are you sure?',
 				  text: "You won't be able to revert this!",
@@ -177,20 +163,20 @@
 				  confirmButtonText: 'Yes, delete it!'
 				}).then(function(isConfirm) {
 				  if (isConfirm) {
-				  	vm.$http.delete('/api/contacts/' + id)
+				  	vm.$http.delete('/api/user/' + id)
 				    swal(
 				      'Deleted!',
 				      'Your file has been deleted.',
 				      'success'
 				    );
-				    vm.fetchContact()
+				    vm.fetchUser()
 				  }
 				})
 
 				
 			},
 
-			editContact: function (id) {
+			editUser: function (id) {
 				this.newContact.phone = $('#phone').intlTelInput("getNumber");
 
 				var contact = this.newContact
@@ -207,22 +193,19 @@
 
 			},
 
-			showContact: function (id) {
+			showUser: function (id) {
 				this.edit = true
 
-				this.$http.get('/api/contacts/' + id, function (data) {
+				this.$http.get('/api/user/' + id, function (data) {
 					$("#phone").intlTelInput("setNumber", data.phone);
-					this.newContact.id = data.id,
-					this.newContact.user_id = data.user_id,
-					this.newContact.firstname = data.firstname,
-					this.newContact.lastname = data.lastname,
-					this.newContact.email = data.email,
-					this.newContact.address = data.address,
-					this.newContact.phone = $("#phone").intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
+					this.newUser.id = data.id,
+					this.newUser.name = data.name,
+					this.newUser.email = data.email,
+					this.newUser.phone = $("#phone").intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
 				})
 			},
 
-			AddNewContact: function () {
+			AddNewUser: function () {
 
 				this.newContact.phone = $('#phone').intlTelInput("getNumber");
 				// User input
@@ -243,11 +226,9 @@
 		computed: {
 			validation: function () {
 				return {
-					firstname: !!this.newContact.firstname.trim(),
-					lastname: !!this.newContact.lastname.trim(),
-					email: emailRE.test(this.newContact.email),
-					phone: !!this.newContact.phone.trim(),
-					address: !!this.newContact.address.trim()
+					name: !!this.newUser.name.trim(),
+					email: emailRE.test(this.newUser.email),
+					phone: !!this.newUser.phone.trim()
 				}
 			},
 
@@ -260,7 +241,7 @@
 		},
 
 		ready: function () {
-			this.fetchContact()
+			this.fetchUser()
 		}
 	});
 </script>

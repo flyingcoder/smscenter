@@ -30,7 +30,7 @@
 					    <label for="phone">Phone</label>
 					    <input v-model="newProfile.phone" type="text" class="form-control" id="phone">
 					  </fieldset>
-					  <button :disabled="!isValid" type="submit" class="btn btn-primary pull-right" >Send</button>
+					  <button :disabled="!isValid" type="submit" class="btn btn-primary pull-right" >Update</button>
 			    </form>
 			  </div>
 			</div>
@@ -66,30 +66,28 @@
 
 		methods: {
 
-			showContact: function (id) {
-				$("#phone").intlTelInput("setNumber", data.phone);
+			showProfile: function (id) {
+				$("#phone").intlTelInput("setNumber", "{{ Auth::user()->phone }}");
 				this.newProfile.id = {{ Auth::user()->id }},
 				this.newProfile.name = "{{ Auth::user()->name }}",
 				this.newProfile.email = "{{ Auth::user()->email }}",
 				this.newProfile.phone = $("#phone").intlTelInput("getNumber", intlTelInputUtils.numberFormat.NATIONAL);
 			},
 
-			editProfile: function (id) {
-				this.newContact.phone = $('#phone').intlTelInput("getNumber");
+			editProfile: function () {
+				this.newProfile.phone = $('#phone').intlTelInput("getNumber");
 
-				var contact = this.newContact
+				var profile = this.newProfile
 
-				this.newContact = {firstname: '', lastname: '', phone: '', email: '', address: ''}
+				this.newProfile = {name: '', phone: '', email: ''}
 
-				this.$http.patch('/api/contacts/' + id, contact, function (data) {
-					swal("Ahoy!","You have successfully edited your contact " + contact.firstname,"success");
+				this.$http.patch('/api/user/' + profile.id, profile, function (data) {
+					swal("Ahoy!","Your profile is updated ","success");
 				})
 
-				vm.fetchContact()
+				vm.showProfile()
 
-				this.edit = false
-
-			},
+			}
 
 		},
 
@@ -108,6 +106,9 @@
 					return validation[key]
 				})
 			}
+		},
+		ready: function () {
+			this.showProfile({{ Auth::user()->id }})
 		}
 	})
 </script>

@@ -23,12 +23,13 @@ Route::group(['prefix' => 'api'], function()
 
 	Route::resource('/contacts', 'ContactsController');
 	Route::resource('/team', 'TeamController');
-	Route::resource('/admin', 'AdminController');
+	Route::resource('/user', 'UserController');
 
 	Route::post('/sms', 'SmsController@sendSms');
 
 	Route::get('/team/{id}/members', 'TeamController@members');
 	Route::post('/member', 'UserController@newMember');
+	Route::get('/team/{id}/{teamid}', 'TeamController@remove');
 });
 
 Route::auth();
