@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="row" id="admin">
-    	<div class="col-md-6">
+    	<div class="col-md-8">
     		<div class="panel panel-default">
 			  <div class="panel-heading">
 				<h3 class="panel-title"> Users </h3>
@@ -17,6 +17,7 @@
 			     			<th>Name</th>
 			     			<th>Email</th>
 			     			<th>Phone</th>
+			     			<th>Role</th>
 			     			<th>Action</th>
 			     		</tr>
 			     	</thead>
@@ -26,12 +27,16 @@
 			     			<td>@{{ user.name}}</td>
 			     			<td>@{{ user.email }}</td>
 			     			<td>@{{ user.phone }}</td>
+			     			<td style="text-transform: uppercase;">@{{ user.users_type }}</td>
 			     			<td>
-			     				<a href="#" @click.prevent="sendMessage(user.phone,user.name)"><i class="glyphicon glyphicon-envelope" style="color:green"></i></a>
+			     				<a href="#" @click.prevent="sendMessage(user.phone,user.name)"><i class="glyphicon glyphicon-envelope" style="color:green" title="send"></i></a>
 			     				&nbsp;
-			     				<a href="#" @click.prevent="showUser(user.id)"><i class="glyphicon glyphicon-edit"></i></a>
+			     				<a href="#" @click.prevent="showUser(user.id)"><i class="glyphicon glyphicon-edit" title="show"></i></a>
 			     				&nbsp;
-			     				<a href="#" @click.prevent="removeUser(user.id)"><i class="glyphicon glyphicon-trash" style="color:red"></i></a>
+			     				<a href="#" @click.prevent="removeUser(user.id)"><i class="glyphicon glyphicon-trash" style="color:red" title="trash"></i></a>
+			     				&nbsp;
+			     				<a href="#" v-if="user.users_type == 'member'" @click.prevent="promoteUser(user.id)" title="promote"><i class="glyphicon glyphicon-arrow-up" style="color:green"></i></a>
+			     				<a href="#" v-if="user.users_type == 'admin'" @click.prevent="demoteUser(user.id)" title="demote"><i class="glyphicon glyphicon-arrow-down" style="color:red"></i></a>
 			     			</td>
 			     		</tr>
 			     	</tbody>
@@ -39,7 +44,7 @@
 			  </div>
 			</div>
     	</div>
-    	<div class="col-md-6">
+    	<div class="col-md-4">
     		<div class="panel panel-default">
 			  <div class="panel-heading">
 				<h3 class="panel-title">
@@ -99,7 +104,8 @@
 				id: '',
 				name: '',
 				email: '',
-				phone: ''
+				phone: '',
+				users_type: ''
 			},
 
 			message: false,
@@ -110,6 +116,75 @@
 		},
 
 		methods: {
+
+			promoteUser: function (id) {
+
+				this.$http.get('/api/user/' + id, function (data) {
+					this.newUser.id = data.id,
+					this.newUser.name = data.name,
+					this.newUser.email = data.email,
+					this.newUser.phone = data.phone;
+					this.newUser.users_type = 'admin'
+				})
+
+				var user = this.newUser
+
+				swal({
+				  title: 'Yeah he earn it! did he?',
+				  text: "User will also have your priviledge",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'Yes!'
+				}).then(function(isConfirm) {
+				  if (isConfirm) {
+				  	vm.$http.patch('/api/user/' + id, user, function (data) {
+						swal(
+					      'User Promoted!',
+					      'User can demote you now.',
+					      'success'
+					    );
+					})
+				    vm.fetchUser()
+				  }
+				})
+			},
+
+			demoteUser: function (id) {
+
+				this.$http.get('/api/user/' + id, function (data) {
+					this.newUser.id = data.id,
+					this.newUser.name = data.name,
+					this.newUser.email = data.email,
+					this.newUser.phone = data.phone;
+					this.newUser.users_type = 'member'
+				})
+
+				var user = this.newUser
+
+				swal({
+				  title: 'Wait! why would you do this?',
+				  text: "User will lost his admin priviledge",
+				  type: 'warning',
+				  showCancelButton: true,
+				  confirmButtonColor: '#3085d6',
+				  cancelButtonColor: '#d33',
+				  confirmButtonText: 'I hate him!'
+				}).then(function(isConfirm) {
+				  if (isConfirm) {
+				  	vm.$http.patch('/api/user/' + id, user, function (data) {
+						swal(
+					      'User Demoted!',
+					      'User lost his admin priviledge.',
+					      'success'
+					    );
+					})
+				    vm.fetchUser()
+				    window.location.reload();
+				  }
+				})
+			},
 
 			sendMessage: function (num, name) {
 				if(num){
