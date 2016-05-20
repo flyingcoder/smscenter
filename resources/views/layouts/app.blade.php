@@ -26,6 +26,7 @@
 
     <!-- Custom -->
     <link rel="stylesheet" type="text/css" href="{{ asset('css/custom.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/preloader.css') }}">
     {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
     <style>
@@ -104,6 +105,11 @@
       </div><!-- /.container-fluid -->
     </nav>
     <div class="container" id="content">
+        <div id="preloader">
+          <div id="spinner">
+            <img src="img/preloader/7.gif" alt="">
+          </div>
+        </div>
         @yield('content')  
     </div>
 
@@ -116,9 +122,16 @@
     <script src="bower_components/intl-tel-input/build/js/intlTelInput.js"></script>
     <script src="bower_components/intl-tel-input/build/js/utils.js"></script>
     <script>
-      $("#phone").intlTelInput({
+     $("#phone").intlTelInput({
           preferredCountries: ['ph','us']
       });
+     $(document).ready(function(){
+
+       var $preloader = $('#preloader');
+       $preloader.delay(200).fadeOut('slow');
+
+      });
+      
     </script>
     @stack('script')
     {{-- <script src="{{ elixir('js/app.js') }}"></script> --}}
