@@ -13,7 +13,7 @@ class ChangeTeamsTable extends Migration
     public function up()
     {
         Schema::table('teams', function (Blueprint $table) {
-            $table->string('teamname')->change();
+           $table->renameColumn('name', 'teamname');
         });
     }
 
