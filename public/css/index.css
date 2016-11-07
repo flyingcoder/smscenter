@@ -1,0 +1,307 @@
+@charset "utf-8";
+@import url("fonts.css");
+/* CSS Document */
+
+body{
+	margin: 0px;
+	background-position:0px 0px;
+	-webkit-font-smoothing: antialiased;
+	z-index:-1;
+	width: 100%;
+	height: 100%;
+	z-index::-1;
+	top:0;
+	left: 0;
+	background-attachment: fixed;
+	background-size:cover;
+	margin:0px;
+	overflow-x:hidden;
+}
+html,body {
+	margin:0;
+	padding:0;
+}
+
+.find{
+	float: left;
+	width: 200px;
+	
+	vertical-align: middle;
+	
+}
+
+.search{
+	vertical-align: middle;
+    display: table-cell;
+	padding-left: 40px;
+	border-left: solid thin #333;
+	height: 70px;
+}
+
+.searchField{
+	width: 230px;
+	outline: none;
+	border: none;
+	height: 30px;
+	margin-left: 20px;
+	margin-right: 20px;
+	padding-left: 10px;
+	font-size: 16px;
+}
+.submit{
+	border: none;
+	outline: none;
+	height: 30px;
+	width: 110px;
+	color: white;
+	background:#F30;
+	cursor: pointer;
+}
+.submit:hover{
+	background:#F90;
+}
+.search p{
+	margin: 0px;
+	color: white;
+	font-size: 16px;
+	font-family: light;
+}
+.find p{
+	margin: 0px;
+	font-family:light;
+	color: white;
+}
+.find h1	{
+	margin: 0px;
+	font-family:regular;
+	color: white;	
+}
+ul{
+	padding:0px;
+}
+
+li{
+	padding: 0px;
+	margin: 0px;
+	list-style:none;
+}
+
+.intro a{
+	text-decoration:none;
+	display:block;
+	width: 150px;
+	color: #F06;
+	background:#FFF;
+	height: auto;
+	float: left;
+	margin-right: 10px;
+	padding: 10px;
+	font-family: bold;
+	font-size: 20px;
+	text-align: center;
+	 -webkit-transition: background-color .3s ease-in-out;
+  -moz-transition: background-color .3s ease-in-out;
+  -o-transition: background-color .3s ease-in-out;
+  -ms-transition: background-color .3s ease-in-out;
+  transition: background-color .3s ease-in-out;
+}
+	
+.intro a:hover{
+	color: #FFF;
+	background:#F06;
+}
+	
+
+
+.content3{
+	margin: auto;
+	width: 1020px;
+	
+	
+}
+
+#imgs{
+	margin: auto;
+	width: 980px;
+	margin-top: 30px;
+	margin-bottom: 30px;
+	clear: both;
+	height: 200px;
+}
+#offers{
+	height: 380px;
+	width: 100%;
+	background: #FFF;
+	margin: 0px;
+	text-align: center;
+	font-family: bold;
+	padding-top: 30px;
+	color: #333;
+}
+
+#offers p{
+	margin: 0px;
+	text-align: center;
+	font-family: regular;
+	color: #333;
+	font-size: 15px;
+}
+
+#offers figure{
+	width: 220px;
+	height: 200px;
+	border: solid 5px #E0E0E0;
+	float: left;
+	margin: 0px;
+	margin-right: 5px;
+	margin-left: 5px;
+
+}
+#offers a{
+	text-decoration:none;
+	display: block;
+	width: 200px;
+	height: auto;
+	background: #14aa9a;
+	clear: both;
+	color: white;
+	padding: 10px;
+	margin: auto;
+	text-align:center;
+	cursor: pointer;
+	font-size: 20px;
+}
+
+#offers a:hover{
+	background: #32dac8;
+}
+#imgs figure p{
+	margin-top: 164px;
+	display: block;
+	width: 100%;
+	height: auto;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	background:#FE0160;
+	color: white;
+	font-family: regular;
+	cursor:pointer;
+}
+
+#placeholder{
+	margin: auto;
+	width: 1250px;
+	padding: 0px;
+}
+
+#siargao{
+	background:url(../_assets/_IGP9900.jpg);
+	background-size: 299px 200px;
+}
+#boracay{
+	background: url(../_assets/Panorama-Cebu-Island.jpg); 
+	background-size: 299px 200px;
+}
+#bohol{
+	background: url(../_assets/BeFunky_DSC_2644.png);
+	background-size: 299px 200px;
+}
+#cebu{
+	background: url(../_assets/DSC_7291.jpg);
+	background-size: 299px 200px;
+	background-position:center center;
+}
+#where{
+	width: 100%;
+	height: 70px;
+	background:#1D1D1D;
+}
+
+
+	
+
+#page{
+	margin: auto;
+	width: 100%;
+	height: 350px;
+	background-size: cover;
+	background-image: url(../_assets/bg.jpg);
+	background-position: top center;	
+	padding-top: 150px;
+	position: relative;
+	z-index: 16;
+	
+}
+#page:after {
+    content: "";
+    background:  transparent url(../_assets/pattern.png) repeat top left;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	top: 0;
+	opacity: 0.5;
+	z-index: -1;
+
+  
+}
+
+
+.welcome{
+	text-align:left;
+	padding: 10px;
+	width: 610px;
+	height: auto;
+	margin-left: 0px;
+	
+}
+
+.welcome h1{
+	font-size: 50px;
+	font-family: regular;
+	font-weight: bold;
+	color: white;
+
+	margin: 0px;
+}
+
+.welcome i{
+	font-size: 20px;
+	font-family: regular;
+	font-weight:bold;
+	color: white;
+	
+	margin: 0px;
+}
+
+#types{
+	width: 1250px;
+	height: 400px;
+	background: #FFF;
+	background-size:cover;
+	background-repeat:no-repeat;
+	text-align: center;
+	font-family: bold;
+	padding-top: 30px;
+	font-size: 20px;
+	color: black;
+	margin: auto;
+	padding-left: 0px;
+	margin-bottom: 0px;
+
+}
+	
+#types figure{
+	
+	width: 180px;
+	height: 180px;
+	float: left;
+	margin: 0px;
+	margin-top: 50px;
+	margin-left: 25px;
+	margin-right: 0px;
+}
+#types figcaption{
+	font-family: light;
+	text-align:center;
+}

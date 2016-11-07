@@ -1,0 +1,122 @@
+@charset "utf-8";
+@import url("fonts.css");
+
+/* CSS Document */
+
+header{
+	width: 100%;
+	height: 30px;
+	margin: 0px;
+	background:#1d9b6c;
+	paddin-left: 20px;
+	padding-top: 5px;
+}
+
+.social{
+	float: right;
+	margin: 0px;
+	padding: 0px;
+
+}
+
+header ul,li{
+	list-style:none;
+	margin: 0px;
+	padding: 0px;
+}
+.account{
+	float: left;
+}
+
+.headerContent{
+	margin-left: 30px;
+	
+}
+
+header a{
+	text-decoration:none;
+	font-family:bold;
+	font-weight:bold;
+	color: white;
+	margin-right: 10px;
+	font-size: 12px;
+}
+	
+header a:hover{
+	color: #F8F8F8;
+}
+nav{
+	height: 40px;
+	width: 100%;
+	background:white;
+	padding: 0px;
+	padding: 10px;
+	font-family:regular;
+	margib: 0px;
+	
+}
+nav .menu{
+	margin: auto;
+	width: 1000px;
+	height: auto;
+	
+}
+
+nav ul{
+	text-decoration: none;
+	padding: 0px;
+	margin: 0px;
+}
+.main_menu li{
+	list-style: none;
+	padding: 0px;
+	margin: 0px;
+}
+.main_menu a{
+	display: block;
+	width: 130px;
+	height: auto;
+	text-decoration:none;
+	color: black;
+	float: right;
+	padding: 10px;
+	text-align:center;
+	font-size: 15px;
+	font-family: bold;
+}
+
+.main_menu a:hover{
+	color:#14aa9a;
+}
+
+.logo{
+	background-size: 130px 19px;
+	width: 130px;
+	height: 19px;
+	float: left;
+}
+
+.juan{
+	float: left;
+	margin: 10px;
+	padding: 0px;
+	
+}
+
+footer{
+	width: 100%;
+	height: 50px;
+	background:#14aa9a;
+	margin: 0px;
+	border-top:solid thin white;
+	padding-top: 20px;
+	clear:both;
+}
+
+.foot figure{
+	float: left;
+}
+
+.info{
+	float: right;
+}
