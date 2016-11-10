@@ -8,7 +8,7 @@
         <div class="intro-body">
             <div class="container">
                 <div class="row">
-                    
+                    <br>
                     <div class="col-md-8 col-md-offset-2">
                         <br><br><br><br><br><br>
                         <img class="responsive" src="img/dumdum_logo.png" style="margin-top:-15px">
