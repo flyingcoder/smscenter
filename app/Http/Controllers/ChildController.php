@@ -26,7 +26,7 @@ class ChildController extends Controller
     	$child->phone_number = $request->phone_number;
     	$child->barangay = $request->barangay;
     	$child->save();
-    	return back();
+    	return redirect()->back()->with('message', 'Saved!');
     }
 
     public function search(Request $request)

@@ -15,6 +15,10 @@ class UpdateChildrenTable extends Migration
         Schema::table('children', function (Blueprint $table) {
             $table->dropColumn(['father', 'mother', 'address']);
             $table->string('barangay');
+            $table->dropColumn(['guardian', 'contact']);
+            $table->string('parent');
+            $table->string('phone_number');
+            $table->date('birthday');
         });
     }
 

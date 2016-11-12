@@ -63,6 +63,10 @@
 @push('js')
 <script type="text/javascript">
 	$( function() {
+		@if(session('message'))
+			swal("{{ session('message') }}", 'New child registered!', 'success');
+		@endif
+	
 	    $( "#datepicker" ).datepicker({
 	    	dateFormat: "yy-mm-dd"
 	    });

@@ -63,7 +63,7 @@
     <section id="register" class="container registercontent-section text-center">
             
         <div class="row">
-            <div id="login" class="col-md-4 col-md-offset-1">
+            <div class="col-md-4 col-md-offset-1">
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
             {!! csrf_field() !!}
             <h2>Login</h2>
