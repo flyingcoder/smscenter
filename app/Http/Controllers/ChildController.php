@@ -21,4 +21,10 @@ class ChildController extends Controller
     	Child::create($request->all());
     	return back();
     }
+
+    public function search(Request $request)
+    {
+    	$search = Child::where('name', 'LIKE', '%'.$request->name.'%')->get();
+    	return $search;
+    }
 }

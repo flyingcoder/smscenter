@@ -49,5 +49,7 @@ Route::group(['as' => 'user::'], function () {
 Route::get('/register-user', function(){
 	return view('auth.register');
 });
-
+Route::get('/admin', function(){
+	return view('auth.login');
+});
 Route::post('/register-child', 'ChildController@register');

@@ -293,8 +293,8 @@ padding-right: 250px;
   font-size: 14px;
   box-shadow: none;
   -webkit-box-shadow: none;
-  padding: 15px 10px;
-  height: 48px;
+  padding: 6px 12px;
+  height: 34px;
   border: 1px solid #524B4B;
 }
 .form-control:focus {

@@ -63,7 +63,7 @@
             {!! csrf_field() !!}
             <h2>Login</h2>
                 <div class="form-group has-feedback">
-                    <input name="email" type="email" value="" class="form-control" placeholder="Email">
+                    <input name="email" type="email" value="{{ old('email') }}" class="form-control" placeholder="Email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                                 @if ($errors->has('email'))
                                     <span class="help-block">
