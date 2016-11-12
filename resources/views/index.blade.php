@@ -56,27 +56,29 @@
 
         <!-- Register Section -->
     <section id="register" class="container registercontent-section text-center">
-        <div id="wrap">
-        <div class="container container-space">
-        <div class="row">
-            <div class="col-lg-12" align="center">
-                <h1>User Access</h1>
-                
-            </div>
-        </div>
             
         <div class="row">
             <div id="login" class="col-md-4 col-md-offset-1">
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {!! csrf_field() !!}
+            {!! csrf_field() !!}
             <h2>Login</h2>
                 <div class="form-group has-feedback">
-                    <input name="email" type="email" class="form-control" placeholder="Email">
+                    <input name="email" type="email" value="" class="form-control" placeholder="Email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                 </div>
                 <div class="form-group has-feedback">
-                    <input name="password" type="password" class="form-control" placeholder="Password">
+                    <input name="password" type="password" value="" class="form-control" placeholder="Password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                 </div>
                 <div class="form-group">
                     <div class="col-xxs-6" align="right">
@@ -87,10 +89,10 @@
                 </div>
                 </form>
                 </div>
-
+                </div>
         </div>
    </div>
 
-    </section>
+</section>
 
   @endsection

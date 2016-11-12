@@ -6,10 +6,19 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Child;
+
 class ChildController extends Controller
 {
     public function create()
     {
-    	return view('dashboard.register-child');
+    	$child = Child::all();
+    	return view('home', compact('child'));
+    }
+
+    public function register(Request $request)
+    {
+    	Child::create($request->all());
+    	return back();
     }
 }

@@ -11,14 +11,10 @@
 
     <title> DumDum </title>
 
-    
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
-    
     <link href="css/grayscale.css" rel="stylesheet">
 
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="css/registerlearner.css" rel="stylesheet">
-
     
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
@@ -39,7 +35,7 @@
                     <i class="fa fa-play-circle"></i>  <span class="light">DumDum</span>
                 </a>
             </div>
-
+            @if(Auth::guest())
             <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
                 <ul class="nav navbar-nav">
 
@@ -53,12 +49,31 @@
                         <a class="page-scroll" href="#contact">Contact Us</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="index.html#register"><span class="fa fa-sign-in" ></span>  Login</a>
+                        <a class="page-scroll" href="#register"><span class="fa fa-sign-in" ></span>  Login</a>
                     </li>
 
                 </ul>
-
             </div>
+            @else
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#registration">Registration</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#messages">Messages</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="{{url('/logout')}}"><span class="fa fa-sign-out" ></span>  Logout</a>
+                    </li>
+
+                </ul>
+            </div>
+            @endif
 
         </div>
 

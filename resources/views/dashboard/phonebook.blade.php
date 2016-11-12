@@ -39,57 +39,6 @@
 			  </div>
 			</div>
     	</div>
-    	<div class="col-md-6">
-    		<div class="panel panel-default">
-			  <div class="panel-heading">
-				<h3 class="panel-title">
-					<span v-if="!edit"> Create </span> 
-					<span v-if="edit"> Edit </span> 
-					Contacts
-				</h3>
-			  </div>
-			  <div class="panel-body">
-			   	<form role="form" method="POST" v-on:submit.prevent="AddNewContact">
-
-			   	  <div class="alert alert-danger" v-if="!isValid">
-					<ul>
-						<li v-show="!validation.firstname">First Name field is required.</li>
-						<li v-show="!validation.lastname">Last Name field is required.</li>
-						<li v-show="!validation.email">Input a valid email address.</li>
-						<li v-show="!validation.phone">Phone Number field is required.</li>
-						<li v-show="!validation.address">Address field is required.</li>
-					</ul>
-				  </div>
-			   	  <div class="row">
-			   	  	<fieldset class="form-group col-md-6">
-					  <label for="firstname">First Name</label>
-					  <input v-model="newContact.firstname" type="text" class="form-control" id="firstname" name="firstname">
-					</fieldset>
-					 <fieldset class="form-group col-md-6">
-					    <label for="lastname">Last Name</label>
-					    <input v-model="newContact.lastname" type="text" class="form-control" id="lastname" name="lastname">
-					  </fieldset>
-			   	  </div>
-			   	  <div class="row">
-			   	  	<fieldset class="form-group col-md-6">
-					  <label for="email">Email</label>
-					  <input v-model="newContact.email" type="email" class="form-control" id="email" name="email">
-					</fieldset>
-					<fieldset class="form-group col-md-6">
-					  <label for="phone">Phone</label>
-					  <input v-model="newContact.phone" type="tel" class="form-control" id="phone" name="phone">
-					</fieldset>
-			   	  </div>
-				  <fieldset class="form-group">
-					  <label for="address">Address</label>
-					  <input v-model="newContact.address" type="text" class="form-control" id="address" name="address">
-					</fieldset>
-				  <button :disabled="!isValid" type="submit" class="btn btn-primary pull-right" v-if="!edit">Submit</button>
-				  <button :disabled="!isValid" class="btn btn-primary pull-right" type="submit" v-if="edit" @click.prevent="editContact(newContact.id)">Edit User</button>
-				</form>
-			  </div>
-			</div>
-    	</div>
     </div>
 	
 @endsection

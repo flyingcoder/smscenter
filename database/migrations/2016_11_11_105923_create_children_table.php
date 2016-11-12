@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateChildsTable extends Migration
+class CreateChildrenTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,12 +12,14 @@ class CreateChildsTable extends Migration
      */
     public function up()
     {
-        Schema::create('childs', function (Blueprint $table) {
+        Schema::create('children', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('parent');
             $table->string('name');
-            $table->string('phone');
-            $table->string('barangay');
+            $table->string('mother');
+            $table->string('father');
+            $table->string('guardian');
+            $table->string('contact');
+            $table->string('address');
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateChildsTable extends Migration
      */
     public function down()
     {
-        Schema::drop('childs');
+        Schema::drop('children');
     }
 }

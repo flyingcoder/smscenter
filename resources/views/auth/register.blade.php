@@ -1,12 +1,16 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
+    <div id="wrap">
+        <div class="container container-space">
+        <div class="row">
+            <div class="col-lg-12" align="center">
+                <h1 style="color:#524B4B">Staff Registration</h1>
+ 
+            </div>
+        </div>
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
                         {!! csrf_field() !!}
 
@@ -73,10 +77,9 @@
                                 </button>
                             </div>
                         </div>
-                    </form>
+                </form>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
