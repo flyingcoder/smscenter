@@ -35,7 +35,7 @@ Route::group(['prefix' => 'api'], function()
 Route::auth();
 
 Route::group(['as' => 'user::'], function () {
-	Route::get('/register-child', ['as' => 'register-child', 'uses' => 'ChildController@create']);
+	Route::get('/home', ['as' => 'home', 'uses' => 'ChildController@create']);
 	Route::get('/send', ['as' => 'send', 'uses' => 'HomeController@index']);
 	Route::get('/profile', ['as' => 'profile', 'uses' => 'UserController@profile']);
 	Route::get('/settings', ['as' => 'settings', 'uses' => 'UserController@settings']);
@@ -45,3 +45,16 @@ Route::group(['as' => 'user::'], function () {
 	Route::get('/newteam', ['as' => 'addTeam', 'uses' => 'TeamController@create']);
 	Route::get('/admin', ['as' => 'admin', 'uses' => 'AdminController@display']);
 });
+
+Route::get('/register-user', function(){
+	return view('auth.register');
+});
+Route::get('/registration', function(){
+	return view('registration');
+});
+Route::get('/send-messages', function(){
+	return view('sms');
+});
+Route::post('/register-child', 'ChildController@register');
+Route::get('/search', 'ChildController@search');
+Route::get('/child/{children}','ChildController@details');

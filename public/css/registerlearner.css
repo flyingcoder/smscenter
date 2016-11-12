@@ -293,8 +293,8 @@ padding-right: 250px;
   font-size: 14px;
   box-shadow: none;
   -webkit-box-shadow: none;
-  padding: 15px 10px;
-  height: 48px;
+  padding: 6px 12px;
+  height: 34px;
   border: 1px solid #524B4B;
 }
 .form-control:focus {
@@ -588,7 +588,7 @@ margin-left: 35px !important;
 
 .navbar-custom .nav li a:hover {
     outline: 0;
-    color: #13a3a4;
+    color: #fff;
     background-color: transparent;
 }
 
@@ -624,7 +624,7 @@ margin-left: 35px !important;
     .navbar-custom.top-nav-collapse {
         padding: 0;
         border-bottom: 1px solid rgba(255,255,255,.3);
-        background: #520702;
+        background: #13a3a4;
     }
 }
 
@@ -637,7 +637,7 @@ margin-left: 35px !important;
     color: #fff;
     background-position: center;
     background: url(../img/slide1.png) no-repeat bottom center scroll;
-    background-color: #000;
+    background-color: #02e0ad;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;

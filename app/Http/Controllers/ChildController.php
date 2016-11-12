@@ -6,10 +6,38 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 
+use App\Child;
+
 class ChildController extends Controller
 {
     public function create()
     {
-    	return view('dashboard.register-child');
+    	$child = Child::paginate(5);
+    	return view('home', compact('child'));
+    }
+
+    public function register(Request $request)
+    {
+
+    	$child = new Child;
+    	$child->name = $request->name;
+    	$child->birthday = $request->birthday;
+    	$child->parent = $request->parent;
+    	$child->phone_number = $request->phone_number;
+    	$child->barangay = $request->barangay;
+    	$child->save();
+    	return back();
+    }
+
+    public function search(Request $request)
+    {
+    	$child = Child::where('name', 'LIKE', '%'.$request->name.'%')->get();
+    	return view('home', compact('child'));
+    }
+
+    public function details(Child $children)
+    {
+
+    	return view('details', compact('children'));
     }
 }

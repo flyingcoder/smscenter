@@ -40,7 +40,12 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2">
                 <h2>Contact Us</h2>
-                <p>Feel free to email us to provide some feedback on our templates, give us suggestions for new templates and themes, or to just say hello! <br><br> Thank you! </p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                proident, sunt in culpa qui officia deserunt mollit anim id est laborum. <br><br> Thank you! </p>
                 <ul class="list-inline banner-social-buttons">
                     <li>
                         <a href="https://twitter.com" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
@@ -56,27 +61,29 @@
 
         <!-- Register Section -->
     <section id="register" class="container registercontent-section text-center">
-        <div id="wrap">
-        <div class="container container-space">
-        <div class="row">
-            <div class="col-lg-12" align="center">
-                <h1>User Access</h1>
-                
-            </div>
-        </div>
             
         <div class="row">
             <div id="login" class="col-md-4 col-md-offset-1">
             <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
-                        {!! csrf_field() !!}
+            {!! csrf_field() !!}
             <h2>Login</h2>
                 <div class="form-group has-feedback">
-                    <input name="email" type="email" class="form-control" placeholder="Email">
+                    <input name="email" type="email" value="{{ old('email') }}" class="form-control" placeholder="Email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                 </div>
                 <div class="form-group has-feedback">
-                    <input name="password" type="password" class="form-control" placeholder="Password">
+                    <input name="password" type="password" value="" class="form-control" placeholder="Password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
                 </div>
                 <div class="form-group">
                     <div class="col-xxs-6" align="right">
@@ -87,10 +94,10 @@
                 </div>
                 </form>
                 </div>
-
+                </div>
         </div>
    </div>
 
-    </section>
+</section>
 
   @endsection
