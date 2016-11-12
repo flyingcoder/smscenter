@@ -12,19 +12,32 @@ class ChildController extends Controller
 {
     public function create()
     {
-    	$child = Child::all();
+    	$child = Child::paginate(5);
     	return view('home', compact('child'));
     }
 
     public function register(Request $request)
     {
-    	Child::create($request->all());
+
+    	$child = new Child;
+    	$child->name = $request->name;
+    	$child->birthday = $request->birthday;
+    	$child->parent = $request->parent;
+    	$child->phone_number = $request->phone_number;
+    	$child->barangay = $request->barangay;
+    	$child->save();
     	return back();
     }
 
     public function search(Request $request)
     {
-    	$search = Child::where('name', 'LIKE', '%'.$request->name.'%')->get();
-    	return $search;
+    	$child = Child::where('name', 'LIKE', '%'.$request->name.'%')->get();
+    	return view('home', compact('child'));
+    }
+
+    public function details(Child $children)
+    {
+
+    	return view('details', compact('children'));
     }
 }

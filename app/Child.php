@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Child extends Model
 {
-    protected $fillable = ['name', 'father', 'mother', 'guardian', 'contact', 'address'];
+    protected $fillable = ['name', 'birthday', 'parent', 'phone_number', 'barangay'];
 }
