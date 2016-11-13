@@ -9,6 +9,6 @@ class Vaccine extends Model
     
     public function child()
     {
-    	return $this->belongsToMany('App\Child');
+    	return $this->belongsToMany('App\Child')->withPivot('id', 'status');
     }
 }

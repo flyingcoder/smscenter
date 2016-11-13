@@ -10,6 +10,8 @@ use App\Child;
 
 use App\Vaccine;
 
+use App\Schedule;
+
 class ChildController extends Controller
 {
     public function create()
@@ -27,11 +29,16 @@ class ChildController extends Controller
     	$child->phone_number = $request->phone_number;
     	$child->barangay = $request->barangay;
     	$child->save();
+
     	$vaccine = Vaccine::all();
+
     	foreach ($vaccine as $key => $value) {
     		$child->vaccineCovered()->attach($value->id);
     	}
-    	return redirect()->back()->with('message', 'Saved!');
+
+        Schedule::makeReminder($child);
+
+    	//return redirect()->back()->with('message', 'Saved!');
     }
 
     public function search(Request $request)
