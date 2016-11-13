@@ -31,7 +31,7 @@ class ChildController extends Controller
 
     public function search(Request $request)
     {
-    	$child = Child::where('name', 'LIKE', '%'.$request->name.'%')->get();
+    	$child = Child::where('parent', 'LIKE', '%'.$request->parent.'%')->paginate(5);
     	return view('home', compact('child'));
     }
 
