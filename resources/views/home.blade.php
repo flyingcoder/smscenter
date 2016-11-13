@@ -14,7 +14,7 @@
                                 <label class="col-md-2 control-label">Parent Name</label>
 
                                 <div class="col-md-4">
-                                    <input type="text" class="form-control" name="parent" value="{{ old('parent') }}">
+                                    <input type="text" class="form-control" name="parent" value="{{ old('parent') }}" required>
 
                                     @if ($errors->has('parent'))
                                         <span class="help-block">
@@ -31,7 +31,7 @@
                 <div class="row">
                     <div class="panel panel-default">
                         <div class="panel-body" style="text-align:left; color: black">
-                            @if(isset($child))
+                            @if(isset($children))
                                 
                                     <table class="table">
                                         <thead>
@@ -45,13 +45,13 @@
                                         </thead>
                                     
                                         <tbody>
-                                        @foreach($child as $children)
+                                        @foreach($children as $child)
                                             <tr>
                                                 <form action="" method="POST">
-                                                   <td><input type="checkbox" value="{{ $children->id }}" name="children[]"></td> 
+                                                   <td><input type="checkbox" value="{{ $child->id }}" name="child[]"></td> 
                                                 </form>
-                                                <td><a href="{{ url('/details')."/".$children->id }}">{{$children->parent}}</a></td>
-                                                <td>{{$children->phone_number}}</td>
+                                                <td><a href="{{ url('/details')."/".$child->id }}">{{$child->parent}}</a></td>
+                                                <td>{{$child->phone_number}}</td>
                                                 <td></td>
                                                 <td></td>
                                             </tr>
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                      <div>
-                            {{ $child->links() }}
+                            {{ $children->links() }}
                     </div>
                 </div>
             </div>

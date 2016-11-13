@@ -57,4 +57,5 @@ Route::get('/send-messages', function(){
 });
 Route::post('/register-child', 'ChildController@register');
 Route::get('/search', 'ChildController@search');
-Route::get('/details/{children}','ChildController@details');
+Route::get('/details/{child}','ChildController@details');
+Route::post('update/{child}','ChildController@update');
