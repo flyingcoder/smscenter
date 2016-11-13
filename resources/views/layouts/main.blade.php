@@ -14,7 +14,7 @@
     <link href="css/grayscale.css" rel="stylesheet">
 
     
-    <link href="css/registerlearner.css" rel="stylesheet">
+    <link href="{{ asset('css/registerlearner.css') }}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/3.0.0/sweetalert2.min.css">
@@ -104,10 +104,10 @@
     <script src="https://cdn.jsdelivr.net/sweetalert2/3.0.0/sweetalert2.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="js/jquery.easing.min.js"></script>
+    <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="js/grayscale.js"></script>
+    <script src="{{ asset('js/grayscale.js') }}"></script>
     @stack('js')
 
 </body>
