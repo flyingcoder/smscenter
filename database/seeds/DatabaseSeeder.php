@@ -28,12 +28,18 @@ class DatabaseSeeder extends Seeder
 
         $vaccine = array(
             ['name' => 'BCG', 'dosage' => 'A'],
+            ['name' => 'OPV 1st dose', 'dosage' => 'B'],
+            ['name' => 'OPV 2nd dose', 'dosage' => 'B'],
+            ['name' => 'OPV 3rd dose', 'dosage' => 'B'],
+            ['name' => 'PENTAVALENT 1st dose', 'dosage' => 'B'],
+            ['name' => 'PENTAVALENT 2nd dose', 'dosage' => 'B'],
+            ['name' => 'PENTAVALENT 3rd dose', 'dosage' => 'B'],
             ['name' => 'Hepatitis B', 'dosage' => 'A'],
-            ['name' => 'OPV', 'dosage' => 'B'],
-            ['name' => 'Pentavalent', 'dosage' => 'B'],
-            ['name' => 'PCV 13', 'dosage' => 'B'],
             ['name' => 'Measles', 'dosage' => 'C'],
-            ['name' => 'MMR', 'dosage' => 'D'],
+            ['name' => 'PCV 13 1st dose', 'dosage' => 'B'],
+            ['name' => 'PCV 13 2nd dose', 'dosage' => 'B'],
+            ['name' => 'MMR 1st dose', 'dosage' => 'D'],
+            ['name' => 'MMR 2nd dose', 'dosage' => 'D'],
             ['name' => 'IPV', 'dosage' => 'E']
         );
 
