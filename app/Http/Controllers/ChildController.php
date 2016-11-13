@@ -8,17 +8,18 @@ use App\Http\Requests;
 
 use App\Child;
 
+use App\Vaccine;
+
 class ChildController extends Controller
 {
     public function create()
     {
-    	$child = Child::paginate(5);
-    	return view('home', compact('child'));
+    	$children = Child::paginate(5);
+    	return view('home', compact('children'));
     }
 
     public function register(Request $request)
     {
-
     	$child = new Child;
     	$child->name = $request->name;
     	$child->birthday = $request->birthday;
@@ -26,18 +27,32 @@ class ChildController extends Controller
     	$child->phone_number = $request->phone_number;
     	$child->barangay = $request->barangay;
     	$child->save();
+    	$vaccine = Vaccine::all();
+    	foreach ($vaccine as $key => $value) {
+    		$child->vaccineCovered()->attach($value->id);
+    	}
     	return redirect()->back()->with('message', 'Saved!');
     }
 
     public function search(Request $request)
     {
-    	$child = Child::where('parent', 'LIKE', '%'.$request->parent.'%')->paginate(5);
-    	return view('home', compact('child'));
+    	$children = Child::where('parent', 'LIKE', '%'.$request->parent.'%')->paginate(5);
+    	return view('home', compact('children'));
     }
 
-    public function details(Child $children)
+    public function details(Child $child)
     {
+    	$child->vaccineCovered;
+    	return view('details', compact('child'));
+    }
 
-    	return view('details', compact('children'));
+    public function update($kid, Request $request)
+    {
+    	$child = Child::find($kid);
+    	$child->parent = $request->parent;
+    	$child->name = $request->name;
+    	$child->phone_number = $request->phone_number;
+    	$child->save();
+    	return back()->with('message', 'Updated!');
     }
 }
