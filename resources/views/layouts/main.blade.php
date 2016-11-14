@@ -11,105 +11,95 @@
 
     <title> DumDum </title>
 
-    <link href="css/grayscale.css" rel="stylesheet">
+    <!-- Bootstrap Core CSS -->
+    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
-    
-    <link href="{{ asset('css/registerlearner.css') }}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/3.0.0/sweetalert2.min.css">
+    <link href="{{asset('css/grayscale.css')}}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{asset('css/blog-home.css')}}" rel="stylesheet">
+    <link href="{{asset('_css/index.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('_css/header.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
+    
+
 </head>
 
-<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+<body>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+    <nav class="navbar navbar-custom2 navbar-fixed-top" role="navigation">
         <div class="container">
-            
-            @if(Auth::guest())
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                <a class="navbar-brand page-scroll" href="#page-top">
-                    <i class="fa fa-play-circle"></i>  <span class="light">DumDum</span>
+                <a class="navbar-brand page-scroll" href="">
+                    <span class="light">DumDum</span>
                 </a>
             </div>
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+            <ul class="nav navbar-nav navbar-right">
                 <ul class="nav navbar-nav">
-
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
                     <li class="hidden">
                         <a href="#page-top"></a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#about">About</a>
+                        <a class="page-scroll" href="{{ url('registration') }}"> Registration </a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#contact">Contact Us</a>
+                        <a class="page-scroll" href="{{ url('messages') }}"> Messages </a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="#register"><span class="fa fa-sign-in" ></span>  Login</a>
-                    </li>
-
-                </ul>
-            </div>
-            @else
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
-                    <i class="fa fa-bars"></i>
-                </button>
-                <a class="navbar-brand page-scroll" href="{{url('home')}}">
-                    <i class="fa fa-play-circle"></i>  <span class="light">DumDum</span>
-                </a>
-            </div>
-            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
-                <ul class="nav navbar-nav">
-
-                    <li class="hidden">
-                        <a href="#page-top"></a>
+                        <a class="page-scroll" href="{{ url('reports') }}"> Reports </a>
                     </li>
                     <li>
-                        <a href="{{url('/registration')}}">Registration</a>
+                        <a class="page-scroll" href="{{ url('logout') }}"><span class="fa fa-sign-in" ></span> Logout </a>
                     </li>
-                    <li>
-                        <a href="{{url('/send-messages')}}">Messages</a>
-                    </li>
-                    <li>
-                        <a href="{{url('/logout')}}"><span class="fa fa-sign-out" ></span>  Logout</a>
-                    </li>
-
-                </ul>
-            </div>
-            @endif
-
+                </ul>   
+          </ul>
+          </nav>
         </div>
-
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
     </nav>
 
-    @yield('content')
+    <!-- Page Content -->
 
-     <!-- Footer -->
+    </div>
+
+@yield('content')
+
     <footer>
         <div class="copyrightcontainer text-center">
             <p> Created by Team IRRS | Copyright &copy; 2016 </p>
         </div>
     </footer>
-
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+    <!-- /.container -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/sweetalert2/3.0.0/sweetalert2.min.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
+    <script src="{{ url('js/jquery.easing.min.js') }}"></script>
 
     <!-- Custom Theme JavaScript -->
-    <script src="{{ asset('js/grayscale.js') }}"></script>
+    <script src="{{ url('js/grayscale.js') }}"></script>
+    
+    <!-- jQuery -->
+    <script src="{{ url('js/jquery.js')}}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ url('js/bootstrap.min.js')}}"></script>
+
     @stack('js')
 
 </body>
 
 </html>
+
+
