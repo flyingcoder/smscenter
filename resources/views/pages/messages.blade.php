@@ -107,7 +107,7 @@
                                 <textarea rows="8" cols="100" resize="none" name="message" form="usrform"></textarea>
                     <br><br>
                     <a class="btn btn-success" href="#">
-                        <i class="glyphicon glyphicon-envelope icon-white"></i>
+                        <i class="glyphicon glyphicon-envelope icon-white">  </i>
                         Send
                      </a>
                         </div>
