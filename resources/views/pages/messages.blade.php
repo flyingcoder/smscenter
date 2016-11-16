@@ -11,19 +11,20 @@
                     Compose Message
                 </h1>
                     <div class="box-content">
-                            
-                            <div class="sort">
+                            <form method="get" action="{{url('search')}}" role="form">
+                               <div class="sort">
                                <br> Recipient's Barangay
-                                    <select class="field">
+                                    <select class="field" name="barangay">
                                         <option value="">Select Barangay</option>
-                                        <option value="">From Brgy. Suarez</option>
-                                        <option value="">From Brgy. Tubod</option>
+                                        <option value="Suarez">From Brgy. Suarez</option>
+                                        <option value="Tubod">From Brgy. Tubod</option>
                                     </select>
                                 <br><br>
                             </div>
                             Search:
-                            <input type="search" name="action" value="">
-                            <input style="font-family:Century Gothic" type="submit" value="search" class="glyphicon glyphicon-search">
+                            <input type="text" name="parent" required>
+                            <input style="font-family:Century Gothic" type="submit" value="search" class="glyphicon glyphicon-search"> 
+                            </form>
                         </div>
 
                         <br><br>
@@ -33,6 +34,7 @@
                             <th></th>
                             <th>Parents' Name</th>
                             <th>Phone Number</th>
+                            <th>Barangay</th>
                             <th>Status</th>
                             <th>Date Sent</th>
                         </tr>
@@ -46,6 +48,7 @@
                                     </form>
                                     <td><a href="{{ url('/details')."/".$child->id }}">{{$child->parent}}</a></td>
                                     <td>{{$child->phone_number}}</td>
+                                    <td>{{$child->barangay}}</td>
                                     <td class="center">
                                         <span class="label-warning label label-default">On going</span>
                                     </td>

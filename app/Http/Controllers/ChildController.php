@@ -27,17 +27,18 @@ class ChildController extends Controller
     	$child->phone_number = $request->phone_number;
     	$child->barangay = $request->barangay;
     	$child->save();
-    	$vaccine = Vaccine::all();
+    	$vaccine = $request->vaccine;
     	foreach ($vaccine as $key => $value) {
-    		$child->vaccineCovered()->attach($value->id);
-    	}
+    		$child->vaccineCovered()->attach($value);
+    	}      
     	return redirect()->back()->with('message', 'Saved!');
     }
 
     public function search(Request $request)
     {
-    	$children = Child::where('parent', 'LIKE', '%'.$request->parent.'%')->paginate(5);
-    	return view('pages.messages', compact('children'));
+    	$children = Child::where('parent', 'LIKE', '%'.$request->parent.'%')
+        ->where()->paginate(5);
+        return view('pages.messages', compact('children'));
     }
 
     public function details($id)
