@@ -27,9 +27,14 @@ class ChildController extends Controller
     	$child->phone_number = $request->phone_number;
     	$child->barangay = $request->barangay;
     	$child->save();
-    	$vaccine = $request->vaccine;
+    	$vaccineCovered = $request->vaccine;
+        $vaccine = Vaccine::all();
     	foreach ($vaccine as $key => $value) {
-    		$child->vaccineCovered()->attach($value);
+           if(in_array($value->id, $vaccineCovered)){
+             $child->vaccineCovered()->attach([$value->id => ['status' => 'covered']]);
+           } else {
+              $child->vaccineCovered()->attach([$value->id => ['status' => 'ongoing']]);
+           }
     	}      
     	return redirect()->back()->with('message', 'Saved!');
     }
@@ -39,21 +44,17 @@ class ChildController extends Controller
         if($request->parent!= '' && $request->barangay!=''){
             $children = Child::where('parent', 'LIKE', '%'.$request->parent.'%')
             ->where('barangay','=',$request->barangay)->paginate(5);
-            dd('asdfdasf');
         }
         else if($request->barangay == '' && $request->parent != ''){
             $children = Child::where('parent', 'LIKE', '%'.$request->parent.'%')->paginate(5);
-            return back()->with('children', compact('children'))->withInput();
         }
         else if($request->barangay != '' && $request->parent == ''){
             $children = Child::where('barangay','=',$request->barangay)->paginate(5);
-            return back()->with('children', compact('children'))->withInput();
         }
         else{
-            dd('sadfkldsafdsaklfklsdafjlk');
-            //return redirect('/messages');
+            return redirect('/messages');
         }
-        
+        return view('pages.messages', compact('children'));
     }
 
     public function details($id)

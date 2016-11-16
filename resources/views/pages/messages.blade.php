@@ -6,25 +6,33 @@
 
             <!-- Blog Entries Column -->
             <div class="col-md-11">
-                
                 <h1 class="page-header">
                     Compose Message
                 </h1>
                     <div class="box-content">
-                            <form method="get" action="{{url('search')}}" role="form">
-                               <div class="sort">
+                         <form action="{{ url('search') }}" method="GET" id="search">
+                            <div class="sort">
                                <br> Recipient's Barangay
-                                    <select class="field" name="barangay">
+                                     <select class="field" name="barangay" id="barangay">
                                         <option value="">Select Barangay</option>
-                                        <option value="Suarez">From Brgy. Suarez</option>
+                                        @if(isset($_GET['barangay']))
+                                        <option value="Suarez" {{ $_GET['barangay'] == 'Suarez' ? 'selected' : '' }}>From Brgy. Suarez</option>
+                                        <option value="Tubod" {{ $_GET['barangay'] == 'Tubod' ? 'selected' : '' }}>From Brgy. Tubod</option>
+                                        @else
+                                         <option value="Suarez">From Brgy. Suarez</option>
                                         <option value="Tubod">From Brgy. Tubod</option>
+                                        @endif
                                     </select>
                                 <br><br>
                             </div>
                             Search:
-                            <input type="text" name="parent">
-                            <input style="font-family:Century Gothic" type="submit" value="search" class="glyphicon glyphicon-search"> 
-                            </form>
+                            @if(isset($_GET['parent']) && !empty($_GET['parent']))
+                            <input type="search" name="parent" value="{{ $_GET['parent'] }}">
+                            @else
+                             <input type="search" name="parent" value="">
+                            @endif
+                           <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
                         </div>
 
                         <br><br>
