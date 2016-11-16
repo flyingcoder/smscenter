@@ -11,19 +11,20 @@
                     Compose Message
                 </h1>
                     <div class="box-content">
-                            
+                        <form action="{{ url('search') }}" method="GET" id="search">
                             <div class="sort">
                                <br> Recipient's Barangay
-                                    <select class="field">
+                                    <select class="field" name="barangay" id="barangay">
                                         <option value="">Select Barangay</option>
-                                        <option value="">From Brgy. Suarez</option>
-                                        <option value="">From Brgy. Tubod</option>
+                                        <option value="suarez">From Brgy. Suarez</option>
+                                        <option value="tubod">From Brgy. Tubod</option>
                                     </select>
                                 <br><br>
                             </div>
                             Search:
                             <input type="search" name="action" value="">
-                            <input style="font-family:Century Gothic" type="submit" value="search" class="glyphicon glyphicon-search">
+                            <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
                         </div>
 
                         <br><br>
@@ -96,3 +97,13 @@
 
     </div>
 @endsection
+
+@push('js')
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#barangay').change(function () {
+            $('#search').submit();
+        })
+    })
+</script>
+@endpush

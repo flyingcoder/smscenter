@@ -11,10 +11,10 @@
                     Compose Message
                 </h1>
                     <div class="box-content">
-                            
+                         <form action="{{ url('search') }}" method="GET" id="search">
                             <div class="sort">
                                <br> Recipient's Barangay
-                                    <select class="field">
+                                     <select class="field" name="barangay" id="barangay">
                                         <option value="">Select Barangay</option>
                                         <option value="">From Brgy. Suarez</option>
                                         <option value="">From Brgy. Tubod</option>
@@ -23,7 +23,8 @@
                             </div>
                             Search:
                             <input type="search" name="action" value="">
-                            <input style="font-family:Century Gothic" type="submit" value="search" class="glyphicon glyphicon-search">
+                           <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
                         </div>
 
                         <br><br>

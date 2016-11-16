@@ -43,6 +43,9 @@ class ChildController extends Controller
 
     public function search(Request $request)
     {
+        dd($request->all());
+        if($request->has('barangay'))
+
     	$children = Child::where('parent', 'LIKE', '%'.$request->parent.'%')->paginate(5);
     	return view('pages.messages', compact('children'));
     }
