@@ -10,8 +10,6 @@ use App\Child;
 
 use App\Vaccine;
 
-use App\Schedule;
-
 class ChildController extends Controller
 {
     public function create()
@@ -29,17 +27,33 @@ class ChildController extends Controller
     	$child->phone_number = $request->phone_number;
     	$child->barangay = $request->barangay;
     	$child->save();
-    	$vaccine = $request->vaccine;
+    	$vaccineCovered = $request->vaccine;
+        $vaccine = Vaccine::all();
     	foreach ($vaccine as $key => $value) {
-    		$child->vaccineCovered()->attach($value);
+           if(in_array($value->id, $vaccineCovered)){
+             $child->vaccineCovered()->attach([$value->id => ['status' => 'covered']]);
+           } else {
+              $child->vaccineCovered()->attach([$value->id => ['status' => 'ongoing']]);
+           }
     	}      
     	return redirect()->back()->with('message', 'Saved!');
     }
 
     public function search(Request $request)
     {
-    	$children = Child::where('parent', 'LIKE', '%'.$request->parent.'%')
-        ->where()->paginate(5);
+        if($request->parent!= '' && $request->barangay!=''){
+            $children = Child::where('parent', 'LIKE', '%'.$request->parent.'%')
+            ->where('barangay','=',$request->barangay)->paginate(5);
+        }
+        else if($request->barangay == '' && $request->parent != ''){
+            $children = Child::where('parent', 'LIKE', '%'.$request->parent.'%')->paginate(5);
+        }
+        else if($request->barangay != '' && $request->parent == ''){
+            $children = Child::where('barangay','=',$request->barangay)->paginate(5);
+        }
+        else{
+            return redirect('/messages');
+        }
         return view('pages.messages', compact('children'));
     }
 

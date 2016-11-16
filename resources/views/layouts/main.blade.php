@@ -18,8 +18,8 @@
 
     <!-- Custom CSS -->
     <link href="{{asset('css/blog-home.css')}}" rel="stylesheet">
-    <link href="{{asset('css/index.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('css/header.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('_css/index.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{asset('_css/header.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -79,16 +79,23 @@
             <p> Created by Team IRRS | Copyright &copy; 2016 </p>
         </div>
     </footer>
-    <!-- Plugin JavaScript -->
-    <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
     <!-- /.container -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/sweetalert2/3.0.0/sweetalert2.min.js"></script>
 
+    <!-- Plugin JavaScript -->
+    <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
+
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('js/grayscale.js') }}"></script>
+    
+    <!-- jQuery -->
+    <script src="{{ asset('js/jquery.js')}}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
 
     @stack('js')
 

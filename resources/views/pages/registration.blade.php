@@ -41,8 +41,8 @@
                                 <label for="barangay" class="control-label"> Select Barangay <br></label>
                                         <select name="barangay" class="field" required>
                                             <option value="">----</option>
-                                            <option value="">From Brgy. Suarez</option>
-                                            <option value="">From Brgy. Tubod</option>
+                                            <option value="Suarez">From Brgy. Suarez</option>
+                                            <option value="Tubod">From Brgy. Tubod</option>
                                         </select>
                             	</div>
                         </div>

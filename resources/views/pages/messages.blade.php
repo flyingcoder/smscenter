@@ -6,7 +6,6 @@
 
             <!-- Blog Entries Column -->
             <div class="col-md-11">
-                
                 <h1 class="page-header">
                     Compose Message
                 </h1>
@@ -16,13 +15,22 @@
                                <br> Recipient's Barangay
                                      <select class="field" name="barangay" id="barangay">
                                         <option value="">Select Barangay</option>
-                                        <option value="Suarez">From Brgy. Suarez</option>
+                                        @if(isset($_GET['barangay']))
+                                        <option value="Suarez" {{ $_GET['barangay'] == 'Suarez' ? 'selected' : '' }}>From Brgy. Suarez</option>
+                                        <option value="Tubod" {{ $_GET['barangay'] == 'Tubod' ? 'selected' : '' }}>From Brgy. Tubod</option>
+                                        @else
+                                         <option value="Suarez">From Brgy. Suarez</option>
                                         <option value="Tubod">From Brgy. Tubod</option>
+                                        @endif
                                     </select>
                                 <br><br>
                             </div>
                             Search:
-                            <input type="search" name="action" value="">
+                            @if(isset($_GET['parent']) && !empty($_GET['parent']))
+                            <input type="search" name="parent" value="{{ $_GET['parent'] }}">
+                            @else
+                             <input type="search" name="parent" value="">
+                            @endif
                            <button type="submit" class="btn btn-primary">Search</button>
                         </form>
                         </div>
@@ -99,7 +107,7 @@
                                 <textarea rows="8" cols="100" resize="none" name="message" form="usrform"></textarea>
                     <br><br>
                     <a class="btn btn-success" href="#">
-                        <i class="glyphicon glyphicon-envelope icon-white"></i>
+                        <i class="glyphicon glyphicon-envelope icon-white">  </i>
                         Send
                      </a>
                         </div>
