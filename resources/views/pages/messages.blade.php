@@ -22,7 +22,7 @@
                                 <br><br>
                             </div>
                             Search:
-                            <input type="text" name="parent" required>
+                            <input type="text" name="parent">
                             <input style="font-family:Century Gothic" type="submit" value="search" class="glyphicon glyphicon-search"> 
                             </form>
                         </div>

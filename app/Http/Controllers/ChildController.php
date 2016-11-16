@@ -36,9 +36,24 @@ class ChildController extends Controller
 
     public function search(Request $request)
     {
-    	$children = Child::where('parent', 'LIKE', '%'.$request->parent.'%')
-        ->where()->paginate(5);
-        return view('pages.messages', compact('children'));
+        if($request->parent!= '' && $request->barangay!=''){
+            $children = Child::where('parent', 'LIKE', '%'.$request->parent.'%')
+            ->where('barangay','=',$request->barangay)->paginate(5);
+            dd('asdfdasf');
+        }
+        else if($request->barangay == '' && $request->parent != ''){
+            $children = Child::where('parent', 'LIKE', '%'.$request->parent.'%')->paginate(5);
+            return back()->with('children', compact('children'))->withInput();
+        }
+        else if($request->barangay != '' && $request->parent == ''){
+            $children = Child::where('barangay','=',$request->barangay)->paginate(5);
+            return back()->with('children', compact('children'))->withInput();
+        }
+        else{
+            dd('sadfkldsafdsaklfklsdafjlk');
+            //return redirect('/messages');
+        }
+        
     }
 
     public function details($id)
