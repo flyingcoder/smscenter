@@ -211,14 +211,7 @@ padding-right: 250px;
 
 
 
-.navbar-custom2 {
-    margin-bottom: 0px;
-    text-transform: uppercase;
-    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
-    background-color: rgb(19, 163, 164);
-    letter-spacing: 1px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.298039);
-}
+
 
 
 
@@ -293,8 +286,8 @@ padding-right: 250px;
   font-size: 14px;
   box-shadow: none;
   -webkit-box-shadow: none;
-  padding: 6px 12px;
-  height: 34px;
+  padding: 15px 10px;
+  height: 48px;
   border: 1px solid #524B4B;
 }
 .form-control:focus {
@@ -550,6 +543,7 @@ margin-left: 35px !important;
     border-bottom: 1px solid rgba(255,255,255,.3);
     text-transform: uppercase;
     font-family: Montserrat,"Helvetica Neue",Helvetica,Arial,sans-serif;
+    background-color: #520702 ;
 }
 
 .col-md-5{
@@ -588,7 +582,7 @@ margin-left: 35px !important;
 
 .navbar-custom .nav li a:hover {
     outline: 0;
-    color: #fff;
+    color: #13a3a4;
     background-color: transparent;
 }
 
@@ -624,7 +618,7 @@ margin-left: 35px !important;
     .navbar-custom.top-nav-collapse {
         padding: 0;
         border-bottom: 1px solid rgba(255,255,255,.3);
-        background: #13a3a4;
+        background: #520702;
     }
 }
 
@@ -637,7 +631,7 @@ margin-left: 35px !important;
     color: #fff;
     background-position: center;
     background: url(../img/slide1.png) no-repeat bottom center scroll;
-    background-color: #02e0ad;
+    background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     background-size: cover;

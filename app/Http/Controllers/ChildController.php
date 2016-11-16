@@ -17,7 +17,7 @@ class ChildController extends Controller
     public function create()
     {
     	$children = Child::paginate(5);
-    	return view('home', compact('children'));
+    	return view('pages.messages', compact('children'));
     }
 
     public function register(Request $request)
@@ -44,18 +44,19 @@ class ChildController extends Controller
     public function search(Request $request)
     {
     	$children = Child::where('parent', 'LIKE', '%'.$request->parent.'%')->paginate(5);
-    	return view('home', compact('children'));
+    	return view('pages.messages', compact('children'));
     }
 
-    public function details(Child $child)
-    {
+    public function details($id)
+    {   
+        $child = Child::find($id);
     	$child->vaccineCovered;
-    	return view('details', compact('child'));
+    	return view('pages.profiles', compact('child'));
     }
 
-    public function update($kid, Request $request)
+    public function update($id, Request $request)
     {
-    	$child = Child::find($kid);
+    	$child = Child::find($id);
     	$child->parent = $request->parent;
     	$child->name = $request->name;
     	$child->phone_number = $request->phone_number;

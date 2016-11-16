@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('welcome');
 });
 
 Route::group(['prefix' => 'api'], function()
@@ -46,11 +46,9 @@ Route::group(['as' => 'user::'], function () {
 	Route::get('/admin', ['as' => 'admin', 'uses' => 'AdminController@display']);
 });
 
+
 Route::get('/register-user', function(){
 	return view('auth.register');
-});
-Route::get('/registration', function(){
-	return view('registration');
 });
 Route::get('/send-messages', function(){
 	return view('sms');
@@ -59,3 +57,16 @@ Route::post('/register-child', 'ChildController@register');
 Route::get('/search', 'ChildController@search');
 Route::get('/details/{child}','ChildController@details');
 Route::post('update/{child}','ChildController@update');
+
+
+
+Route::get('registration', function(){
+	return view('pages.registration');
+});
+Route::get('messages', 'ChildController@create');
+Route::get('profiles', function(){
+	return view('pages.profiles');
+});
+Route::get('reports', function(){
+	return view('pages.reports');
+});
