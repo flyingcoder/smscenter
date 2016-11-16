@@ -16,8 +16,8 @@
                                <br> Recipient's Barangay
                                      <select class="field" name="barangay" id="barangay">
                                         <option value="">Select Barangay</option>
-                                        <option value="">From Brgy. Suarez</option>
-                                        <option value="">From Brgy. Tubod</option>
+                                        <option value="Suarez">From Brgy. Suarez</option>
+                                        <option value="Tubod">From Brgy. Tubod</option>
                                     </select>
                                 <br><br>
                             </div>
@@ -34,6 +34,7 @@
                             <th></th>
                             <th>Parents' Name</th>
                             <th>Phone Number</th>
+                            <th>Barangay</th>
                             <th>Status</th>
                             <th>Date Sent</th>
                         </tr>
@@ -47,6 +48,7 @@
                                     </form>
                                     <td><a href="{{ url('/details')."/".$child->id }}">{{$child->parent}}</a></td>
                                     <td>{{$child->phone_number}}</td>
+                                    <td>{{$child->barangay}}</td>
                                     <td class="center">
                                         <span class="label-warning label label-default">On going</span>
                                     </td>

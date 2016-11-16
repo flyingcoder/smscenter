@@ -14,7 +14,7 @@
     <!-- Bootstrap Core CSS -->
     <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
-    <link href="{{asset('css/grayscale.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/grayscale.css') }}" rel="stylesheet">
 
     <!-- Custom CSS -->
     <link href="{{asset('css/blog-home.css')}}" rel="stylesheet">
@@ -23,6 +23,7 @@
     <link href="{{asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
     
 
 </head>
