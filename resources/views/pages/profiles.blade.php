@@ -39,21 +39,18 @@
                     <table class="table table-striped table-bordered responsive">
                         <thead>
                         <tr>
-                            <th></th>
                             <th>Parents' Name</th>
                             <th>Phone Number</th>
                             <th>Barangay</th>
                             <th>Status</th>
                             <th>Date Sent</th>
+                            <th>Operation</th>
                         </tr>
                         </thead>
                         @if(isset($children))
                             @foreach($children as $child)
                                 <tbody>
-                                <tr>
-                                    <form action="" method="POST">
-                                   <td><input type="checkbox" value="{{ $child->id }}" name="child[]"></td> 
-                                    </form>
+                                <tr>    
                                     <td><a href="{{ url('/details')."/".$child->id }}">{{$child->parent}}</a></td>
                                     <td>{{$child->phone_number}}</td>
                                     <td>{{$child->barangay}}</td>
@@ -61,6 +58,7 @@
                                         <span class="label-warning label label-default">On going</span>
                                     </td>
                                     <td></td>
+                                    <td><a onclick="deleteData({{ $child->id }})" style="cursor: pointer;"><span class="glyphicon glyphicon-trash"></span></a></td>
                                 </tr>
                                 </tbody>
                             @endforeach
@@ -112,3 +110,31 @@
 
     </div>
 @endsection
+
+@push('js')
+<script type="text/javascript">
+
+     function deleteData(id) {
+            swal({
+              title: 'Are you sure?',
+              text: "You won't be able to revert this!",
+              type: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Yes, delete it!'
+            }).then(function () {
+                $.get('/delete/child/' +id).then(function(result){
+                    swal({
+                        title: 'Deleted',
+                        text: 'Deletion is successful!',
+                        type: 'success',
+                    }).then(function () {
+                        window.location.reload()
+                    })
+                })
+            })
+            
+        }
+</script>
+@endpush

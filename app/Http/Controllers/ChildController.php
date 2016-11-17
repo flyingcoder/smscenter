@@ -79,4 +79,9 @@ class ChildController extends Controller
     	$child->save();
     	return back()->with('message', 'Updated!');
     }
+
+    public function destroy($id)
+    {
+        return Child::destroy($id);
+    }
 }

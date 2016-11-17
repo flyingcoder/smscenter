@@ -58,12 +58,14 @@ Route::get('/search', 'ChildController@search');
 Route::get('/details/{child}','ChildController@details');
 Route::post('/update/{child}','ChildController@update');
 
+Route::get('/delete/child/{id}', 'ChildController@destroy');
+
 
 
 Route::get('registration', function(){
 	return view('pages.registration');
 });
-Route::get('profiles', 'ChildController@index');
+Route::get('home', 'ChildController@index');
 Route::get('messages', 'ChildController@display');
 Route::get('profile', function(){
 	return view('pages.profile');

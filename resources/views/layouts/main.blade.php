@@ -10,21 +10,18 @@
     <meta name="author" content="">
 
     <title> DumDum </title>
-
+    
     <!-- Bootstrap Core CSS -->
-    <link href="{{ asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <link href="{{ asset('css/grayscale.css') }}" rel="stylesheet">
-
+    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <!-- Custom CSS -->
     <link href="{{asset('css/blog-home.css')}}" rel="stylesheet">
-    <link href="{{asset('_css/index.css')}}" rel="stylesheet" type="text/css" />
-    <link href="{{asset('_css/header.css')}}" rel="stylesheet" type="text/css" />
     <link href="{{asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.css">
-    
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/sweetalert2/6.1.1/sweetalert2.css">
 
 </head>
 
@@ -59,9 +56,9 @@
                     <li>
                         <a class="page-scroll" href="{{ url('messages') }}"> Messages </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a class="page-scroll" href="{{ url('profiles') }}"> Profiles </a>
-                    </li>
+                    </li> -->
                     <li>
                         <a class="page-scroll" href="{{ url('reports') }}"> Reports </a>
                     </li>
@@ -84,22 +81,16 @@
 @yield('content')
 
     <!-- /.container -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.1.1.js" integrity="sha256-16cdPddA6VdVInumRGo6IbivbERE8p7CQR3HzTBuELA=" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/sweetalert2/3.0.0/sweetalert2.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"  crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/sweetalert2/6.1.1/sweetalert2.js"></script>
 
     <!-- Plugin JavaScript -->
     <script src="{{ asset('js/jquery.easing.min.js') }}"></script>
 
     <!-- Custom Theme JavaScript -->
     <script src="{{ asset('js/grayscale.js') }}"></script>
-    
-    <!-- jQuery -->
-    <script src="{{ asset('js/jquery.js')}}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{ asset('js/bootstrap.min.js')}}"></script>
 
     @stack('js')
 
