@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Twilio;
+use App\Child;
 
 
 
@@ -29,5 +30,31 @@ class SmsController extends Controller
 
 		return $m;
 		   
+    }
+
+    public function send($number, $message)
+    {
+        try 
+        { 
+            $m = Twilio::message($number, $message);
+
+        } catch(Services_Twilio_RestException $e) {
+
+            return $e;
+        };
+
+        return $m;
+    }
+
+    public function sendBulk(Request $request)
+    {
+        if($request->has('child')){
+            foreach ($request->child as $key => $value) {
+                $child = Child::find($value);
+                $this->send($child->phone_number, $request->message);
+            }
+        }
+
+        return $back();
     }
 }

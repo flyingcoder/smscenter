@@ -59,6 +59,7 @@ Route::get('/details/{child}','ChildController@details');
 Route::post('/update/{child}','ChildController@update');
 
 Route::get('/delete/child/{id}', 'ChildController@destroy');
+Route::post('/send/bulk', 'SmsController@sendBulk');
 
 
 

@@ -37,6 +37,8 @@
 
                         <br><br>
                     <table class="table table-striped table-bordered responsive">
+                     <form action="{{url('/send/bulk')}}" method="POST">
+                        {{ csrf_field() }}
                         <thead>
                         <tr>
                             <th></th>
@@ -51,9 +53,7 @@
                             @foreach($children as $child)
                                 <tbody>
                                 <tr>
-                                    <form action="" method="POST">
-                                   <td><input type="checkbox" value="{{ $child->id }}" name="child[]"></td> 
-                                    </form>
+                                   <td><input type="checkbox" value="{{ $child->id }}" name="child[]" class="checkbox" required></td> 
                                     <td>{{$child->parent}}</td>
                                     <td>{{$child->phone_number}}</td>
                                     <td>{{$child->barangay}}</td>
@@ -99,18 +99,21 @@
                     <div class="col-md-offset-5">{{ $children->links() }}</div>
                     <div class="sort">
                             Type of Message <br>
-                            <select class="field">
-                                <option value="">Reminder</option>
-                                <option value="">Recall</option>
+                            <select class="field" name="message_type">
+                                <option value="remind">Reminder</option>
+                                <option value="recall">Recall</option>
                             </select>
                             <br><br>
-                                <textarea rows="8" cols="100" resize="none" name="message" form="usrform"></textarea>
+                            <textarea rows="8" cols="100" resize="none" name="message" required>
+                                
+                            </textarea>
                     <br><br>
-                    <a class="btn btn-success" href="#">
+                    <button type="submit" class="btn btn-success">
                         <i class="glyphicon glyphicon-envelope icon-white"></i>
                         Send
-                     </a>
-                        </div>
+                     </button>
+                    </form>
+                    </div>
                 </div>
             </div>
 
@@ -126,3 +129,11 @@
 
     </div>
 @endsection
+
+@push('js')
+<script type="text/javascript">
+    function texts() {
+        console.log($('.checkbox').val());
+    }
+</script>
+@endpush
