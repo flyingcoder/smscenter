@@ -12,10 +12,16 @@ use App\Vaccine;
 
 class ChildController extends Controller
 {
-    public function create()
+    public function index()
     {
     	$children = Child::paginate(5);
-    	return view('pages.messages', compact('children'));
+    	return view('pages.profiles', compact('children'));
+    }
+
+    public function display()
+    {
+        $children = Child::paginate(5);
+        return view('pages.messages', compact('children'));
     }
 
     public function register(Request $request)
@@ -61,7 +67,7 @@ class ChildController extends Controller
     {   
         $child = Child::find($id);
     	$child->vaccineCovered;
-    	return view('pages.profiles', compact('child'));
+    	return view('pages.profile', compact('child'));
     }
 
     public function update($id, Request $request)

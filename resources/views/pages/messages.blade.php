@@ -54,7 +54,7 @@
                                     <form action="" method="POST">
                                    <td><input type="checkbox" value="{{ $child->id }}" name="child[]"></td> 
                                     </form>
-                                    <td><a href="{{ url('/details')."/".$child->id }}">{{$child->parent}}</a></td>
+                                    <td>{{$child->parent}}</td>
                                     <td>{{$child->phone_number}}</td>
                                     <td>{{$child->barangay}}</td>
                                     <td class="center">
@@ -107,7 +107,7 @@
                                 <textarea rows="8" cols="100" resize="none" name="message" form="usrform"></textarea>
                     <br><br>
                     <a class="btn btn-success" href="#">
-                        <i class="glyphicon glyphicon-envelope icon-white">  </i>
+                        <i class="glyphicon glyphicon-envelope icon-white"></i>
                         Send
                      </a>
                         </div>

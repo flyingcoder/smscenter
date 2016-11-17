@@ -63,9 +63,10 @@ Route::post('/update/{child}','ChildController@update');
 Route::get('registration', function(){
 	return view('pages.registration');
 });
-Route::get('messages', 'ChildController@create');
-Route::get('profiles', function(){
-	return view('pages.profiles');
+Route::get('profiles', 'ChildController@index');
+Route::get('messages', 'ChildController@display');
+Route::get('profile', function(){
+	return view('pages.profile');
 });
 Route::get('reports', function(){
 	return view('pages.reports');
