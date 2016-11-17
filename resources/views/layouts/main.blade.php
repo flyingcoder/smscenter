@@ -37,9 +37,15 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
+                @if(Auth::guest())
                 <a class="navbar-brand page-scroll" href="">
                     <span class="light">DumDum</span>
                 </a>
+                @else
+                <a class="navbar-brand page-scroll" href="{{url('home')}}">
+                    <span class="light">DumDum</span>
+                </a>
+                @endif
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <ul class="nav navbar-nav">
@@ -52,6 +58,9 @@
                     </li>
                     <li>
                         <a class="page-scroll" href="{{ url('messages') }}"> Messages </a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="{{ url('profiles') }}"> Profiles </a>
                     </li>
                     <li>
                         <a class="page-scroll" href="{{ url('reports') }}"> Reports </a>
@@ -74,11 +83,6 @@
 
 @yield('content')
 
-    <footer>
-        <div class="copyrightcontainer text-center">
-            <p> Created by Team IRRS | Copyright &copy; 2016 </p>
-        </div>
-    </footer>
     <!-- /.container -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="http://code.jquery.com/ui/1.12.1/jquery-ui.js" integrity="sha256-T0Vest3yCU7pafRw9r+settMBX6JkKN06dqBnpQ8d30=" crossorigin="anonymous"></script>

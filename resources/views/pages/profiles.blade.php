@@ -1,61 +1,102 @@
 @extends('layouts.main')
 @section('content')
-    <!-- Page Content -->
     <div class="container">
 
         <div class="row">
 
-
             <!-- Blog Entries Column -->
             <div class="col-md-11">
-
                 <h1 class="page-header">
-                   Vaccination Record
+                    Vaccination Record
                 </h1>
-                <form role="form" action="{{url('/update')."/".$child->id}}" method="POST">
-                    {!!csrf_field()!!}
-                        Search:
-                        <input type="search" name="action" value="">
-                        <input style="font-family:Century Gothic" type="submit" value="search" class="glyphicon glyphicon-search">
-                        <br>
-                        <br>
-                        Parent's Name: <input type="" name="parent" value="{{$child->parent}}"><br><br>
-                        Child's Name: <input type="" name="name" value="{{$child->name}}"><br><br>
-                        Phone Number: <input type="" name="phone_number" value="{{$child->phone_number}}" >
+                    <div class="box-content">
+                         <form action="{{ url('search') }}" method="GET" id="search">
+                            <div class="sort">
+                               <br> Recipient's Barangay
+                                     <select class="field" name="barangay" id="barangay">
+                                        <option value="">Select Barangay</option>
+                                        @if(isset($_GET['barangay']))
+                                        <option value="Suarez" {{ $_GET['barangay'] == 'Suarez' ? 'selected' : '' }}>From Brgy. Suarez</option>
+                                        <option value="Tubod" {{ $_GET['barangay'] == 'Tubod' ? 'selected' : '' }}>From Brgy. Tubod</option>
+                                        @else
+                                         <option value="Suarez">From Brgy. Suarez</option>
+                                        <option value="Tubod">From Brgy. Tubod</option>
+                                        @endif
+                                    </select>
+                                <br><br>
+                            </div>
+                            Search:
+                            @if(isset($_GET['parent']) && !empty($_GET['parent']))
+                            <input type="search" name="parent" value="{{ $_GET['parent'] }}">
+                            @else
+                             <input type="search" name="parent" value="">
+                            @endif
+                           <button type="submit" class="btn btn-primary">Search</button>
+                        </form>
+                        </div>
+
                         <br><br>
-                        <table class="table table-striped table-bordered responsive">
+                    <table class="table table-striped table-bordered responsive">
                         <thead>
                         <tr>
-                            <th>Vaccine</th>
+                            <th></th>
+                            <th>Parents' Name</th>
+                            <th>Phone Number</th>
+                            <th>Barangay</th>
                             <th>Status</th>
-                            <th>Vaccination Date</th>
-                            <th>Action</th>
+                            <th>Date Sent</th>
                         </tr>
                         </thead>
+                        @if(isset($children))
+                            @foreach($children as $child)
+                                <tbody>
+                                <tr>
+                                    <form action="" method="POST">
+                                   <td><input type="checkbox" value="{{ $child->id }}" name="child[]"></td> 
+                                    </form>
+                                    <td><a href="{{ url('/details')."/".$child->id }}">{{$child->parent}}</a></td>
+                                    <td>{{$child->phone_number}}</td>
+                                    <td>{{$child->barangay}}</td>
+                                    <td class="center">
+                                        <span class="label-warning label label-default">On going</span>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                </tbody>
+                            @endforeach
+                        @else
                         <tbody>
-
-                        @foreach($child->vaccineCovered as $vaccine)
                         <tr>
-                            <td>{{ $vaccine->name }}</td>
-                            @if($vaccine->pivot->status == 'covered')
-                                <td class="center">
-                                    <span class="label label-success">Finished</span>
-                                </td>
-                            @else
-                                <td class="center">
-                                    <span class="label label-danger center">Unfinished</span>
-                                </td>
-                            @endif
-                            
-                            <td contenteditable="true" class="center"></td>
-                            <td></td>
-                        </tr> 
-
-                        @endforeach
+                            <td><input type="checkbox"class="" id="" name="">
+                            Maria Makiling</td>
+                            <td class="center">09356659624</td>
+                            <td class="center">
+                                <span class="label-warning label label-default">On going</span>
+                            </td>
+                            <td class="center">01/01/2016</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"class="" id="" name="">
+                            Maria Makiling</td>
+                            <td class="center">09356659624</td>
+                            <td class="center">
+                                <span class="label-warning label label-default">On going</span>
+                            </td>
+                            <td class="center">01/01/2016</td>
+                        </tr>
+                        <tr>
+                            <td><input type="checkbox"class="" id="" name="">
+                            Maria Makiling</td>
+                            <td class="center">09356659624</td>
+                            <td class="center">
+                                <span class="label-warning label label-default">On going</span>
+                            </td>
+                            <td class="center">01/01/2016</td>
+                        </tr>
                         </tbody>
+                        @endif
                     </table>
-                    <button class="btn btn-success" type="submit">Update Child's Informtation Details</button>
-                </form>
+                    <div class="col-md-offset-5">{{ $children->links() }}</div>
                 </div>
             </div>
 
@@ -63,4 +104,11 @@
 
 
         </div>
+        
+        <!-- /.row -->
+
+
+        <hr>
+
+    </div>
 @endsection
