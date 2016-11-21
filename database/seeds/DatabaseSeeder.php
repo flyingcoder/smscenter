@@ -22,7 +22,7 @@ class DatabaseSeeder extends Seeder
         DB::table('vaccines')->delete();
 
         $users = array(
-            ['name' => 'Dumdum', 'email' => 'admin@dumdum.com', 'password' => Hash::make('secret'), 'users_type' => 'admin', 'phone' => ''],
+            ['name' => 'Dumdum', 'email' => 'admin@gmail.com', 'password' => Hash::make('secret'), 'users_type' => 'admin']
     	);
 
         $vaccine = array(
