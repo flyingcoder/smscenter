@@ -34,12 +34,12 @@
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
                     <i class="fa fa-bars"></i>
                 </button>
-                @if(Auth::guest())
-                <a class="navbar-brand page-scroll" href="">
+                @if(Auth::check())
+                <a class="navbar-brand page-scroll" href="{{url('/home')}}">
                     <span class="light">DumDum</span>
                 </a>
                 @else
-                <a class="navbar-brand page-scroll" href="{{url('home')}}">
+                <a class="navbar-brand page-scroll" href="{{url('/home')}}">
                     <span class="light">DumDum</span>
                 </a>
                 @endif

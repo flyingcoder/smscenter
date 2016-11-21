@@ -22,25 +22,25 @@ class DatabaseSeeder extends Seeder
         DB::table('vaccines')->delete();
 
         $users = array(
-            ['name' => 'Alvin Pacot', 'email' => 'admin@gmail.com', 'password' => Hash::make('secret'), 'users_type' => 'admin', 'phone' => '+639754882784'],
-            ['name' => 'Name Lastname', 'email' => 'user1@gmail.com', 'password' => Hash::make('secret'), 'users_type' => 'member']
+            ['name' => 'Dumdum', 'email' => 'admin@dumdum.com', 'password' => Hash::make('secret'), 'users_type' => 'admin', 'phone' => ''],
     	);
 
         $vaccine = array(
             ['name' => 'BCG', 'dosage' => 'A'],
             ['name' => 'OPV 1st dose', 'dosage' => 'B'],
-            ['name' => 'OPV 2nd dose', 'dosage' => 'B'],
-            ['name' => 'OPV 3rd dose', 'dosage' => 'B'],
+            ['name' => 'OPV 2nd dose', 'dosage' => 'C'],
+            ['name' => 'OPV 3rd dose', 'dosage' => 'D'],
             ['name' => 'PENTAVALENT 1st dose', 'dosage' => 'B'],
-            ['name' => 'PENTAVALENT 2nd dose', 'dosage' => 'B'],
-            ['name' => 'PENTAVALENT 3rd dose', 'dosage' => 'B'],
+            ['name' => 'PENTAVALENT 2nd dose', 'dosage' => 'C'],
+            ['name' => 'PENTAVALENT 3rd dose', 'dosage' => 'D'],
             ['name' => 'Hepatitis B', 'dosage' => 'A'],
-            ['name' => 'Measles', 'dosage' => 'C'],
+            ['name' => 'Measles', 'dosage' => 'E'],
             ['name' => 'PCV 13 1st dose', 'dosage' => 'B'],
-            ['name' => 'PCV 13 2nd dose', 'dosage' => 'B'],
-            ['name' => 'MMR 1st dose', 'dosage' => 'D'],
-            ['name' => 'MMR 2nd dose', 'dosage' => 'D'],
-            ['name' => 'IPV', 'dosage' => 'E']
+            ['name' => 'PCV 13 2nd dose', 'dosage' => 'C'],
+            ['name' => 'PCV 13 3rd dose', 'dosage' => 'D'],
+            ['name' => 'MMR 1st dose', 'dosage' => 'F'],
+            ['name' => 'MMR 2nd dose', 'dosage' => 'J'],
+            ['name' => 'IPV', 'dosage' => 'D']
         );
 
         foreach ($vaccine as $value) {

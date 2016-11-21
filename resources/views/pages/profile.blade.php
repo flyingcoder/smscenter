@@ -48,7 +48,7 @@
                             @endif
                             
                             <td contenteditable="true" class="center"></td>
-                            <td></td>
+                            <td><a href="#" onclick="update({{ $child->id }}, {{ $vaccine->pivot->id }})"><span class="glyphicon glyphicon-pencil"></span></a></td>
                         </tr> 
 
                         @endforeach
@@ -64,3 +64,37 @@
 
         </div>
 @endsection
+
+@push('js')
+<script type="text/javascript">
+    function update(child_id, pivot_id) {
+        swal({
+          title: 'Update Status',
+          input: 'select',
+          inputOptions: {
+            'covered': 'Finished',
+            'ongoing': 'Unfinished'
+          },
+          inputPlaceholder: 'Select status',
+          showCancelButton: true,
+          inputValidator: function (value) {
+            return new Promise(function (resolve, reject) {
+              if (value != '') {
+                resolve()
+              }
+            })
+          }
+        }).then(function (result) {
+            var data = {
+                child_id: child_id,
+                pivot_id: pivot_id,
+                status: result
+            }
+           $.get('/update/schedule-status', data).then(function (result) {
+                console.log(result)
+            })
+        })
+       
+    }
+</script>
+@endpush
