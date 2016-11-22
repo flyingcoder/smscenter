@@ -53,7 +53,7 @@
                             @foreach($children as $child)
                                 <tbody>
                                 <tr>
-                                   <td><input type="checkbox" value="{{ $child->id }}" name="child[]" class="checkbox" required></td> 
+                                   <td><input type="checkbox" value="{{ $child->id }}" name="child[]" class="checkbox"></td> 
                                     <td>{{$child->parent}}</td>
                                     <td>{{$child->phone_number}}</td>
                                     <td>{{$child->barangay}}</td>

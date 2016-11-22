@@ -26,21 +26,21 @@ class DatabaseSeeder extends Seeder
     	);
 
         $vaccine = array(
-            ['name' => 'BCG', 'dosage' => 'A'],
-            ['name' => 'OPV 1st dose', 'dosage' => 'B'],
-            ['name' => 'OPV 2nd dose', 'dosage' => 'C'],
-            ['name' => 'OPV 3rd dose', 'dosage' => 'D'],
-            ['name' => 'PENTAVALENT 1st dose', 'dosage' => 'B'],
-            ['name' => 'PENTAVALENT 2nd dose', 'dosage' => 'C'],
-            ['name' => 'PENTAVALENT 3rd dose', 'dosage' => 'D'],
-            ['name' => 'Hepatitis B', 'dosage' => 'A'],
-            ['name' => 'Measles', 'dosage' => 'E'],
-            ['name' => 'PCV 13 1st dose', 'dosage' => 'B'],
-            ['name' => 'PCV 13 2nd dose', 'dosage' => 'C'],
-            ['name' => 'PCV 13 3rd dose', 'dosage' => 'D'],
-            ['name' => 'MMR 1st dose', 'dosage' => 'F'],
-            ['name' => 'MMR 2nd dose', 'dosage' => 'J'],
-            ['name' => 'IPV', 'dosage' => 'D']
+            ['name' => 'BCG', 'dosage' => 'A', 'description' => 'at birth'],
+            ['name' => 'OPV 1st dose', 'dosage' => 'B', 'description' => '6 weeks from birth'],
+            ['name' => 'OPV 2nd dose', 'dosage' => 'C', 'description' => '10 weeks from birth'],
+            ['name' => 'OPV 3rd dose', 'dosage' => 'D', 'description' => '14 weeks from birth'],
+            ['name' => 'PENTAVALENT 1st dose', 'dosage' => 'B', 'description' => '6 weeks from birth'],
+            ['name' => 'PENTAVALENT 2nd dose', 'dosage' => 'C', 'description' => '10 weeks from birth'],
+            ['name' => 'PENTAVALENT 3rd dose', 'dosage' => 'D', 'description' => '14 weeks from birth'],
+            ['name' => 'Hepatitis B', 'dosage' => 'A', 'description' => 'at birth'],
+            ['name' => 'Measles', 'dosage' => 'E', 'description' => '9 months from birth'],
+            ['name' => 'PCV 13 1st dose', 'dosage' => 'B', 'description' => '6 weeks from birth'],
+            ['name' => 'PCV 13 2nd dose', 'dosage' => 'C', 'description' => '10 weeks from birth'],
+            ['name' => 'PCV 13 3rd dose', 'dosage' => 'D', 'description' => '14 weeks from birth'],
+            ['name' => 'MMR 1st dose', 'dosage' => 'F', 'description' => '12 months from birth'],
+            ['name' => 'MMR 2nd dose', 'dosage' => 'J', 'description' => '4 years from birth'],
+            ['name' => 'IPV', 'dosage' => 'D', 'description' => '14 weeks from birth']
         );
 
         foreach ($vaccine as $value) {

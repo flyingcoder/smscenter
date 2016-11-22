@@ -63,26 +63,50 @@ class ChildController extends Controller
                 case 'B':
                     //week 6, 42 days, starts at 35
                     $this->saveReminder(['age' => $age->days, 'dosage_sched' => 35, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
+                    $from = date('Y-m-d', strtotime("+35 day", strtotime($child->birthday)));
+                    $until = date('Y-m-d', strtotime("+7 day", strtotime($from)));
+                    $value->pivot->vaccination_range = $from." - ".$until;
+                    $value->pivot->save();
                     break;
                 case 'C':
-                    //week 6, 42 days, starts at 35
+                   
                     $this->saveReminder(['age' => $age->days, 'dosage_sched' => 49, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
+                    $from = date('Y-m-d', strtotime("+49 day", strtotime($child->birthday)));
+                    $until = date('Y-m-d', strtotime("+7 day", strtotime($from)));
+                    $value->pivot->vaccination_range = $from." - ".$until;
+                    $value->pivot->save();
                     break;
                 case 'D':
-                    //week 6, 42 days, starts at 35
+                   
                     $this->saveReminder(['age' => $age->days, 'dosage_sched' => 63, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
+                    $from = date('Y-m-d', strtotime("+63 day", strtotime($child->birthday)));
+                    $until = date('Y-m-d', strtotime("+7 day", strtotime($from)));
+                    $value->pivot->vaccination_range = $from." - ".$until;
+                    $value->pivot->save();
                     break;
                 case 'E':
-                    //week 6, 42 days, starts at 35
+                    
                     $this->saveReminder(['age' => $age->days, 'dosage_sched' => 252, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
+                    $from = date('Y-m-d', strtotime("+252 day", strtotime($child->birthday)));
+                    $until = date('Y-m-d', strtotime("+30 day", strtotime($from)));
+                    $value->pivot->vaccination_range = $from." - ".$until;
+                    $value->pivot->save();
                     break;
                 case 'F':
-                    //week 6, 42 days, starts at 35
+                   
                     $this->saveReminder(['age' => $age->days, 'dosage_sched' => 330, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
+                    $from = date('Y-m-d', strtotime("+330 day", strtotime($child->birthday)));
+                    $until = date('Y-m-d', strtotime("+60 day", strtotime($from)));
+                    $value->pivot->vaccination_range = $from." - ".$until;
+                    $value->pivot->save();
                     break; 
                 case 'J':
-                    //week 6, 42 days, starts at 35
+                    
                     $this->saveReminder(['age' => $age->days, 'dosage_sched' => 720, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
+                    $from = date('Y-m-d', strtotime("+720 day", strtotime($child->birthday)));
+                    $until = date('Y-m-d', strtotime("+720 day", strtotime($from)));
+                    $value->pivot->vaccination_range = $from." - ".$until;
+                    $value->pivot->save();
                     break; 
             }
         }
@@ -92,8 +116,10 @@ class ChildController extends Controller
     public function updateSchedule(Request $request)
     {
         $child = Child::find($request->child_id);
-        $pivot = $child->vaccineCovered()->where('pivot_id', $request->pivot_id)->get();
-        dd($pivot);
+        $vaccine = $child->vaccineCovered()->wherePivot('id', $request->pivot_id)->first();
+        $vaccine->pivot->status = $request->status;
+        $vaccine->pivot->save();
+        return $vaccine;
     }
 
     public function saveReminder(Array $info)

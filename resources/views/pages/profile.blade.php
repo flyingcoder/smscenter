@@ -47,7 +47,7 @@
                                 </td>
                             @endif
                             
-                            <td contenteditable="true" class="center"></td>
+                            <td>{{ $vaccine->pivot->vaccination_range }}</td>
                             <td><a href="#" onclick="update({{ $child->id }}, {{ $vaccine->pivot->id }})"><span class="glyphicon glyphicon-pencil"></span></a></td>
                         </tr> 
 
@@ -58,10 +58,6 @@
                 </form>
                 </div>
             </div>
-
-
-
-
         </div>
 @endsection
 
@@ -91,7 +87,7 @@
                 status: result
             }
            $.get('/update/schedule-status', data).then(function (result) {
-                console.log(result)
+                window.location.reload()
             })
         })
        

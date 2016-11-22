@@ -41,7 +41,7 @@
                                 <label for="barangay" class="control-label"> Select Barangay <br></label>
                                         <select name="barangay" class="field" required>
                                             <option value="">----</option>
-                                            <option value="Suarez">From Brgy. Suarez</option>
+                                            <option value="Tambacan">From Brgy. Tambacan</option>
                                             <option value="Tubod">From Brgy. Tubod</option>
                                         </select>
                             	</div>
@@ -52,7 +52,7 @@
                             <div class="form-group">
                                 <label for="vaccines_covered" class="control-label"> Vaccine/s Covered</label><br>
                                     @foreach(App\Vaccine::all() as $value)
-                                        <input type="checkbox" value="{{$value->id}}" id="bcg" name="vaccine[]"> {{$value->name}} <br>
+                                        <input type="checkbox" value="{{$value->id}}" id="bcg" name="vaccine[]"> {{$value->name}} <b>({{ $value->description }})</b><br>
                                     @endforeach
                             </div>
 

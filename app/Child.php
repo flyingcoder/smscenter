@@ -10,6 +10,6 @@ class Child extends Model
 
     public function vaccineCovered()
     {
-    	return $this->belongsToMany('App\Vaccine')->withPivot('id', 'status');
+    	return $this->belongsToMany('App\Vaccine')->withPivot('id', 'status', 'vaccination_range');
     }
 }
