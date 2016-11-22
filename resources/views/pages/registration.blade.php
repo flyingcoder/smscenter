@@ -24,7 +24,7 @@
 
     			                <div class="form-group has-feedback">
     			                    <label for="birthday" class="control-label"> Child's Birthday </label>
-    			                    <input type="text" id="datepicker" class="form-control" id="birthday" name="birthday" value="" required>
+    			                    <input type="text" id="datepicker" class="form-control" id="birthday" name="birthday" value="" placeholder="YYYY-MM-DD" required>
     			                </div>
     			               
     			                <div class="form-group">
@@ -33,8 +33,8 @@
     			                </div>
 
     			                <div class="form-group">
-    			                    <label for="phone_number" class="control-label"> Phone Number </label>
-    			                    <input type="integer" class="form-control" id="phone_number" name="phone_number" required>
+    			                    <label for="phone" class="control-label" style="display: block"> Phone Number </label>
+    			                    <input type="tel" class="form-control" id="phone" style="width: 360px;" name="phone_number" autocomplete="off" required>
     			                </div>
 
     			                <div class="form-group">
@@ -79,10 +79,15 @@
     		@if(session('message'))
     			swal("{{ session('message') }}", 'New child registered!', 'success');
     		@endif
-    	
-    	    $( "#datepicker" ).datepicker({
-    	    	dateFormat: "yy-mm-dd"
-    	    });
+
     	  });
+    </script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="{{ asset('bower_components/intl-tel-input/build/js/intlTelInput.js') }}"></script>
+    <script src="{{ asset('bower_components/intl-tel-input/build/js/utils.js') }}"></script>
+    <script>
+        $("#phone").intlTelInput({
+            preferredCountries: ['ph']
+        });
     </script>
     @endpush
