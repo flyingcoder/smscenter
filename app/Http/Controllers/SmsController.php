@@ -55,6 +55,11 @@ class SmsController extends Controller
             }
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'All message has been send!');
+    }
+
+    public function getSmsLogs()
+    {
+        
     }
 }

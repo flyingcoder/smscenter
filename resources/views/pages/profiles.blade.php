@@ -43,7 +43,6 @@
                             <th>Phone Number</th>
                             <th>Barangay</th>
                             <th>Status</th>
-                            <th>Date Sent</th>
                             <th>Operation</th>
                         </tr>
                         </thead>
@@ -57,7 +56,6 @@
                                     <td class="center">
                                         <span class="label-warning label label-default">On going</span>
                                     </td>
-                                    <td></td>
                                     <td><a onclick="deleteData({{ $child->id }})" style="cursor: pointer;"><span class="glyphicon glyphicon-trash"></span></a></td>
                                 </tr>
                                 </tbody>
