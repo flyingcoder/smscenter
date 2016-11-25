@@ -15,11 +15,6 @@ class Schedule extends Model
 	 *
 	 */
 
-	protected $fillable = ['remind_date', 'pivot_id', 'status', 'type'];
-
-	public static function getRange(Child $child)
-	{
-		
-	}
+	protected $fillable = ['child_id', 'remind_date', 'pivot_id', 'status', 'type'];
    
 }

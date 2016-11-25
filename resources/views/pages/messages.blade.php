@@ -46,7 +46,6 @@
                             <th>Phone Number</th>
                             <th>Barangay</th>
                             <th>Status</th>
-                            <th>Date Sent</th>
                         </tr>
                         </thead>
                         @if(isset($children))
@@ -60,7 +59,6 @@
                                     <td class="center">
                                         <span class="label-warning label label-default">On going</span>
                                     </td>
-                                    <td></td>
                                 </tr>
                                 </tbody>
                             @endforeach
@@ -132,6 +130,9 @@
 
 @push('js')
 <script type="text/javascript">
+    @if(!empty(session('message')))
+        swal("Sent!", "{{ session('message') }}", "success");
+    @endif
     function texts() {
         console.log($('.checkbox').val());
     }

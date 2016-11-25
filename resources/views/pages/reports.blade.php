@@ -10,85 +10,33 @@
                 <h1 class="page-header">
                     SMS Logs
                 </h1>
-                        Messages Sent: <input type="" name="messages_sent"><br><br>
                     <table class="table table-striped table-bordered responsive">
                         <thead>
                         <tr>
-                            <th>Parents' Name</th>
                             <th>Phone Number</th>
-                            <th>Status</th>
-                            <th>Date Sent</th>
+                            <th>Vaccine</th>
+                            <th>Standard Schedule</th>
+                            <th>Type</th>
+                            <th>Sending Date</th>
                         </tr>
                         </thead>
                         <tbody>
+                        @foreach($records as $key => $sched)
+                        <?php $child = App\Child::find($sched->child_id); ?>
+                        <?php $vaccine = App\Vaccine::find($sched->vaccine_id); ?>
+                        <tr>
+                            <td><a href="/details/{{ $sched->child_id }}">{{ $child->phone_number }}</a></td>
+                            <td class="center">{{ $vaccine->name }}</td>
+                            <td class="center">{{ $vaccine->description }}</td>
+                            <td class="center">{{ $sched->type }}</td>
+                            <td class="center">{{ $sched->remind_date }}</td>
+                        </tr>
 
-
-                        <tr>
-                            <td><a href="profile.html"> Maria Makiling</a></td>
-                            <td class="center">09356659624</td>
-                            <td class="center">
-                                <span class="label-complete label label-default">Delivered</span>
-                            </td>
-                            <td class="center">01/01/2016</td>
-                        </tr>
-                        <tr>
-                            <td><a href="profile.html"> Maria Makiling</a></td>
-                            <td class="center">09356659624</td>
-                            <td class="center">
-                                <span class="label-complete label label-default">Delivered</span>
-                            </td>
-                            <td class="center">01/01/2016</td>
-                        </tr>
-                        <tr>
-                            <td><a href="profile.html"> Maria Makiling</a></td>
-                            <td class="center">09356659624</td>
-                            <td class="center">
-                                <span class="label-danger label label-default">Failed</span>
-                            </td>
-                            <td class="center">01/01/2016</td>
-                        </tr>
+                        @endforeach
                         </tbody>
                     </table>
 
-                    Updated Accounts: <input type="" name="updated_accounts"><br><br>
-                    <table class="table table-striped table-bordered responsive">
-                        <thead>
-                        <tr>
-                            <th>Parents' Name</th>
-                            <th>Phone Number</th>
-                            <th>Status</th>
-                            <th>Date Updated</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-
-
-                        <tr>
-                            <td><a href="profile.html"> Maria Makiling</a></td>
-                            <td class="center">09356659624</td>
-                            <td class="center">
-                                <span class="label-complete label label-default">Completed</span>
-                            </td>
-                            <td class="center">01/01/2016</td>
-                        </tr>
-                        <tr>
-                            <td><a href="profile.html"> Maria Makiling</a></td>
-                            <td class="center">09356659624</td>
-                            <td class="center">
-                                <span class="label-warning label label-default">On going</span>
-                            </td>
-                            <td class="center">01/01/2016</td>
-                        </tr>
-                        <tr>
-                            <td><a href="profile.html"> Maria Makiling</a></td>
-                            <td class="center">09356659624</td>
-                            <td class="center">
-                                <span class="label-warning label label-default">On going</span>
-                            </td>
-                            <td class="center">01/01/2016</td>
-                        </tr>
-                        </tbody>
-                    </table>
+                     <div class="col-md-offset-5">{{ $records->links() }}</div>
                 </div>
             </div>
 

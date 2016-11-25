@@ -12,6 +12,8 @@ use App\Vaccine;
 
 use App\Schedule;
 
+use DB;
+
 class ChildController extends Controller
 {
     public function index()
@@ -62,7 +64,7 @@ class ChildController extends Controller
             switch ($value->dosage) {
                 case 'B':
                     //week 6, 42 days, starts at 35
-                    $this->saveReminder(['age' => $age->days, 'dosage_sched' => 35, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
+                    $this->saveReminder(['child_id' => $child->id,'age' => $age->days, 'dosage_sched' => 35, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
                     $from = date('Y-m-d', strtotime("+35 day", strtotime($child->birthday)));
                     $until = date('Y-m-d', strtotime("+7 day", strtotime($from)));
                     $value->pivot->vaccination_range = $from." - ".$until;
@@ -70,7 +72,7 @@ class ChildController extends Controller
                     break;
                 case 'C':
                    
-                    $this->saveReminder(['age' => $age->days, 'dosage_sched' => 49, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
+                    $this->saveReminder(['child_id' => $child->id,'age' => $age->days, 'dosage_sched' => 49, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
                     $from = date('Y-m-d', strtotime("+49 day", strtotime($child->birthday)));
                     $until = date('Y-m-d', strtotime("+7 day", strtotime($from)));
                     $value->pivot->vaccination_range = $from." - ".$until;
@@ -78,7 +80,7 @@ class ChildController extends Controller
                     break;
                 case 'D':
                    
-                    $this->saveReminder(['age' => $age->days, 'dosage_sched' => 63, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
+                    $this->saveReminder(['child_id' => $child->id,'age' => $age->days, 'dosage_sched' => 63, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
                     $from = date('Y-m-d', strtotime("+63 day", strtotime($child->birthday)));
                     $until = date('Y-m-d', strtotime("+7 day", strtotime($from)));
                     $value->pivot->vaccination_range = $from." - ".$until;
@@ -86,7 +88,7 @@ class ChildController extends Controller
                     break;
                 case 'E':
                     
-                    $this->saveReminder(['age' => $age->days, 'dosage_sched' => 252, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
+                    $this->saveReminder(['child_id' => $child->id,'age' => $age->days, 'dosage_sched' => 252, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
                     $from = date('Y-m-d', strtotime("+252 day", strtotime($child->birthday)));
                     $until = date('Y-m-d', strtotime("+30 day", strtotime($from)));
                     $value->pivot->vaccination_range = $from." - ".$until;
@@ -94,7 +96,7 @@ class ChildController extends Controller
                     break;
                 case 'F':
                    
-                    $this->saveReminder(['age' => $age->days, 'dosage_sched' => 330, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
+                    $this->saveReminder(['child_id' => $child->id,'age' => $age->days, 'dosage_sched' => 330, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
                     $from = date('Y-m-d', strtotime("+330 day", strtotime($child->birthday)));
                     $until = date('Y-m-d', strtotime("+60 day", strtotime($from)));
                     $value->pivot->vaccination_range = $from." - ".$until;
@@ -102,7 +104,7 @@ class ChildController extends Controller
                     break; 
                 case 'J':
                     
-                    $this->saveReminder(['age' => $age->days, 'dosage_sched' => 720, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
+                    $this->saveReminder(['child_id' => $child->id,'age' => $age->days, 'dosage_sched' => 720, 'birthday' => $child->birthday, 'pivot_id' => $value->pivot->id]);
                     $from = date('Y-m-d', strtotime("+720 day", strtotime($child->birthday)));
                     $until = date('Y-m-d', strtotime("+720 day", strtotime($from)));
                     $value->pivot->vaccination_range = $from." - ".$until;
@@ -127,16 +129,16 @@ class ChildController extends Controller
         if($info['age'] < $info['dosage_sched']){
             if($info['age'] < $info['dosage_sched'] - 3){
                 $day = $info['dosage_sched'] - 3;
-                Schedule::create(['type' => 'remind', 'remind_date' => date_create(date('Y-m-d', strtotime("+$day day", strtotime($info['birthday'])))), 'pivot_id' => $info['pivot_id']]);
+                Schedule::create(['child_id' => $info['child_id'], 'type' => 'remind', 'remind_date' => date_create(date('Y-m-d', strtotime("+$day day", strtotime($info['birthday'])))), 'pivot_id' => $info['pivot_id']]);
             }
             $day1 = $info['dosage_sched'];
-            Schedule::create(['type' => 'recall', 'remind_date' => date_create(date('Y-m-d', strtotime("+$day1 day", strtotime($info['birthday'])))), 'pivot_id' => $info['pivot_id']]);
+            Schedule::create(['child_id' => $info['child_id'],'type' => 'recall', 'remind_date' => date_create(date('Y-m-d', strtotime("+$day1 day", strtotime($info['birthday'])))), 'pivot_id' => $info['pivot_id']]);
             $day2 = $info['dosage_sched'] + 2;
-            Schedule::create(['type' => 'recall', 'remind_date' => date_create(date('Y-m-d', strtotime("+$day2 day", strtotime($info['birthday'])))), 'pivot_id' => $info['pivot_id']]);
+            Schedule::create(['child_id' => $info['child_id'],'type' => 'recall', 'remind_date' => date_create(date('Y-m-d', strtotime("+$day2 day", strtotime($info['birthday'])))), 'pivot_id' => $info['pivot_id']]);
             $day3 = $info['dosage_sched'] + 4;
-            Schedule::create(['type' => 'recall', 'remind_date' => date_create(date('Y-m-d', strtotime("+$day3 day", strtotime($info['birthday'])))), 'pivot_id' => $info['pivot_id']]);
+            Schedule::create(['child_id' => $info['child_id'],'type' => 'recall', 'remind_date' => date_create(date('Y-m-d', strtotime("+$day3 day", strtotime($info['birthday'])))), 'pivot_id' => $info['pivot_id']]);
             $day4 = $info['dosage_sched'] + 6;
-            Schedule::create(['type' => 'last_call', 'remind_date' => date_create(date('Y-m-d', strtotime("+$day4 day", strtotime($info['birthday'])))), 'pivot_id' => $info['pivot_id']]);
+            Schedule::create(['child_id' => $info['child_id'],'type' => 'last_call', 'remind_date' => date_create(date('Y-m-d', strtotime("+$day4 day", strtotime($info['birthday'])))), 'pivot_id' => $info['pivot_id']]);
         }
     }
 
@@ -177,6 +179,9 @@ class ChildController extends Controller
 
     public function destroy($id)
     {
+        $child = Child::find($id);
+        $child->vaccineCovered()->detach();
+        DB::table('schedules')->where('child_id', $id)->delete();
         return Child::destroy($id);
     }
 }

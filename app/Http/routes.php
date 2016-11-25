@@ -73,6 +73,4 @@ Route::get('messages', 'ChildController@display');
 Route::get('profile', function(){
 	return view('pages.profile');
 });
-Route::get('reports', function(){
-	return view('pages.reports');
-});
+Route::get('reports', 'HomeController@schedule');
