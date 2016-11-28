@@ -53,8 +53,9 @@
                                     <td><a href="{{ url('/details')."/".$child->id }}">{{$child->parent}}</a></td>
                                     <td>{{$child->phone_number}}</td>
                                     <td>{{$child->barangay}}</td>
+                                    <?php $count = count($child->vaccineCovered()->wherePivot('status', 'ongoing')->get()); ?>
                                     <td class="center">
-                                        <span class="label-warning label label-default">On going</span>
+                                        <span class="label-warning label label-default">{{ $count > 0 ? $count." ongoing vaccine to be covered"  : "Completed" }}</span>
                                     </td>
                                     <td><a onclick="deleteData({{ $child->id }})" style="cursor: pointer;"><span class="glyphicon glyphicon-trash"></span></a></td>
                                 </tr>

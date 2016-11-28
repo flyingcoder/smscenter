@@ -19,7 +19,7 @@
                                         <option value="Suarez" {{ $_GET['barangay'] == 'Suarez' ? 'selected' : '' }}>From Brgy. Suarez</option>
                                         <option value="Tubod" {{ $_GET['barangay'] == 'Tubod' ? 'selected' : '' }}>From Brgy. Tubod</option>
                                         @else
-                                         <option value="Suarez">From Brgy. Suarez</option>
+                                         <option value="Tambacan">From Brgy. Tambacan</option>
                                         <option value="Tubod">From Brgy. Tubod</option>
                                         @endif
                                     </select>
@@ -45,7 +45,6 @@
                             <th>Parents' Name</th>
                             <th>Phone Number</th>
                             <th>Barangay</th>
-                            <th>Status</th>
                         </tr>
                         </thead>
                         @if(isset($children))
@@ -56,9 +55,6 @@
                                     <td>{{$child->parent}}</td>
                                     <td>{{$child->phone_number}}</td>
                                     <td>{{$child->barangay}}</td>
-                                    <td class="center">
-                                        <span class="label-warning label label-default">On going</span>
-                                    </td>
                                 </tr>
                                 </tbody>
                             @endforeach
