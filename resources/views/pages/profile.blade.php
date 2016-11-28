@@ -12,16 +12,13 @@
                 <h1 class="page-header">
                    Vaccination Record
                 </h1>
-                <form role="form" action="{{url('/update')."/".$child->id}}" method="POST">
+                <form role="form" action="{{url('/update').'/'.$child->id}}" method="POST">
                     {!!csrf_field()!!}
-                        Search:
-                        <input type="search" name="action" value="">
-                        <input style="font-family:Century Gothic" type="submit" value="search" class="glyphicon glyphicon-search">
-                        <br>
                         <br>
                         Parent's Name: <input type="" name="parent" value="{{$child->parent}}"><br><br>
                         Child's Name: <input type="" name="name" value="{{$child->name}}"><br><br>
                         Phone Number: <input type="" name="phone_number" value="{{$child->phone_number}}" >
+                         <button class="btn btn-success" type="submit" style="display: block; margin-top: 30px;">Update Child's Informtation Details</button>
                         <br><br>
                         <table class="table table-striped table-bordered responsive">
                         <thead>
@@ -54,7 +51,6 @@
                         @endforeach
                         </tbody>
                     </table>
-                    <button class="btn btn-success" type="submit">Update Child's Informtation Details</button>
                 </form>
                 </div>
             </div>
@@ -63,6 +59,9 @@
 
 @push('js')
 <script type="text/javascript">
+    @if(!empty(session('message')))
+        swal("Done!", "{{ session('message') }}", "success");
+    @endif
     function update(child_id, pivot_id) {
         swal({
           title: 'Update Status',
