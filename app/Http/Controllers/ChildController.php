@@ -39,13 +39,13 @@ class ChildController extends Controller
     	$child->save();
     	$vaccineCovered = $request->vaccine;
         $vaccine = Vaccine::all();
-    	foreach ($vaccine as $key => $value) {
-           if(in_array($value->id, $vaccineCovered)){
+        foreach ($vaccine as $key => $value) {
+           if(count($vaccineCovered) != 0 && in_array($value->id, $vaccineCovered)){
               $child->vaccineCovered()->attach([$value->id => ['status' => 'covered']]);
            } else {
               $child->vaccineCovered()->attach([$value->id => ['status' => 'ongoing']]);
            }
-    	}
+        }
 
         $this->setSchedule($child);
 

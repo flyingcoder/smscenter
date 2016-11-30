@@ -16,7 +16,7 @@
                                      <select class="field" name="barangay" id="barangay">
                                         <option value="">Select Barangay</option>
                                         @if(isset($_GET['barangay']))
-                                        <option value="Suarez" {{ $_GET['barangay'] == 'Suarez' ? 'selected' : '' }}>From Brgy. Suarez</option>
+                                        <option value="Tambacan" {{ $_GET['barangay'] == 'Tambacan' ? 'selected' : '' }}>From Brgy. Tambacan</option>
                                         <option value="Tubod" {{ $_GET['barangay'] == 'Tubod' ? 'selected' : '' }}>From Brgy. Tubod</option>
                                         @else
                                          <option value="Tambacan">From Brgy. Tambacan</option>
