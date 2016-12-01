@@ -93,14 +93,14 @@
                     <div class="col-md-offset-5">{{ $children->links() }}</div>
                     <div class="sort">
                             Type of Message <br>
-                            <select class="field" name="message_type">
+                            <select class="field" name="message_type" id="typeOfMessage">
+                                <option >Select Options</option>
                                 <option value="remind">Reminder</option>
                                 <option value="recall">Recall</option>
                             </select>
                             <br><br>
-                            <textarea rows="8" cols="100" resize="none" name="message" required>
-                                
-                            </textarea>
+<textarea rows="8" cols="100" resize="none" name="message" required>
+</textarea>
                     <br><br>
                     <button type="submit" class="btn btn-success">
                         <i class="glyphicon glyphicon-envelope icon-white"></i>
@@ -125,10 +125,24 @@
 @endsection
 
 @push('js')
+
 <script type="text/javascript">
     @if(!empty(session('message')))
         swal("Sent!", "{{ session('message') }}", "success");
     @endif
+    $(document).ready(function () {
+        $('#typeOfMessage').change(function () {
+            var value = $('#typeOfMessage').val()
+            if(value === 'recall'){
+                var text = "PAHIBALO! \n Ang imong anak na si ______ kay pabakunahan og ______ krng (date and time) sa Barangay (Tambacan or Tubod) Health Center. \n Sent via CHO: \n DUMDUM Zenaida Casilac \n Head Nurse";
+                $('textarea').val(text)
+            } else {
+                var text = "PAHIBALO! \n Adunay ipahigayon nga pagpa-bakuna sa [vaccine type] karung umaabot nga [Date & Time] sa barangay [Tubod/Tambacan] Health center. Ginaawhag ka isip ginikanan sa pag-tambong niini. Daghan salamat. \n Sent via DUMDUM \n Zenaida Casilac \n (CHO Head Nurse/EPI Head)";
+                $('textarea').val(text)
+            }
+        })
+    });
+
     function texts() {
         console.log($('.checkbox').val());
     }
